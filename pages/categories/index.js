@@ -47,7 +47,7 @@ export const getStaticProps = () => {
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
   const categoriesWithPostsCount = categories.map((category) => {
     const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories.map(e => slugify(e)).includes(category)
+      post.frontmatter.categories.map((e) => slugify(e)).includes(category)
     );
     return {
       name: category,

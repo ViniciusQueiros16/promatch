@@ -3,10 +3,10 @@
     "title": "promatch Nextjs",
     "base_url": "/",
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_white": "/images/logo-light.png",
+    "logo": "/images/promatch-logo.png",
+    "logo_white": "/images/promatch-logo.png",
     "logo_width": "150",
-    "logo_height": "39",
+    "logo_height": "150",
     "logo_text": "promatch"
   },
   "settings": {

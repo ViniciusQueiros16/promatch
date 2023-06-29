@@ -111,13 +111,17 @@ const Header = () => {
             </ul>
           </div>
 
-          <Link href="/login"><button className={`btn ml-3  px-5 py-2 ${"btn-outline-primary"}`}>
-            I want to hire
-          </button></Link>
+          <Link href="/login">
+            <button className={`btn ml-3  px-5 py-2 ${"btn-outline-primary"}`}>
+              I want to hire
+            </button>
+          </Link>
 
-          <Link href="/login"><button className={`btn ml-3  px-5 py-2 ${"btn-outline-primary"}`}>
-            I want to work
-          </button></Link>
+          <Link href="/login">
+            <button className={`btn ml-3  px-5 py-2 ${"btn-outline-primary"}`}>
+              I want to work
+            </button>
+          </Link>
           <ThemeSwitcher />
 
           <button

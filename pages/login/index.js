@@ -17,7 +17,7 @@ const Login = () => {
           alt="login-background"
           priority={true}
         />
-        <div className="w-full rounded-md bg-slate-900 p-6 shadow-md lg:max-w-xl">
+        <div className="w-full rounded-md bg-theme-light p-6 shadow-md dark:bg-darkmode-theme-dark lg:max-w-xl">
           <div className="flex justify-center">
             <Image src={logo} alt="Logo proposta" width={120} height={40} />
           </div>
@@ -25,7 +25,7 @@ const Login = () => {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-semibold text-white"
+                className="block text-sm font-semibold bg-theme-light dark:bg-darkmode-theme-dark"
               >
                 Email
               </label>
@@ -37,7 +37,7 @@ const Login = () => {
             <div className="mb-2">
               <label
                 htmlFor="password"
-                className="block text-sm font-semibold text-white"
+                className="block text-sm font-semibold bg-theme-light dark:bg-darkmode-theme-dark"
               >
                 Password
               </label>
@@ -53,14 +53,16 @@ const Login = () => {
               Forget Password?
             </Link>
             <div className="mt-2">
-              <button className="w-full transform rounded-md bg-gray-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 focus:bg-gray-600 focus:outline-none hover:bg-gray-600">
+              <button className="w-full transform rounded-md btn px-4 py-2 tracking-wide  btn-outline-primary">
                 Sign In
               </button>
             </div>
           </form>
 
           <div className="relative mt-6 flex w-full items-center justify-center border border-t">
-            {/* <div className="absolute bg-white px-5">Or</div> */}
+            <div className="absolute bg-theme-light px-5 dark:bg-darkmode-theme-dark">
+              Or
+            </div>
           </div>
           <div className="mt-4 flex gap-x-2">
             <button
@@ -78,7 +80,7 @@ const Login = () => {
             </button>
           </div>
 
-          <p className="mt-4 text-center text-sm text-gray-700">
+          <p className="mt-4 text-center text-sm bg-theme-light dark:bg-darkmode-theme-dark">
             Don't have an account?{" "}
             <Link
               href="/signup"

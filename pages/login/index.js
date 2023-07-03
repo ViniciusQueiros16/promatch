@@ -3,12 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { Twitter, GitHub, Google } from "@mui/icons-material";
 import logo from "/public/images/promatch-logo.png";
-import Header from "@partials/Header";
+import Base from "@layouts/Baseof";
 
 const Login = () => {
   return (
-    <>
-      <Header />
+    <Base title="Login">
       <div className="login-background relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
         <div className="w-full rounded-md bg-slate-900 p-6 shadow-md lg:max-w-xl">
           <div className="flex justify-center">
@@ -82,7 +81,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-    </>
+    </Base>
   );
 };
 

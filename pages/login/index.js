@@ -4,11 +4,19 @@ import Image from "next/image";
 import { Twitter, GitHub, Google } from "@mui/icons-material";
 import logo from "/public/images/promatch-logo.png";
 import Base from "@layouts/Baseof";
+import ImageFallback from "layouts/components/ImageFallback";
 
 const Login = () => {
   return (
     <Base title="Login">
-      <div className="login-background relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+        <ImageFallback
+          className="-z-[1] object-cover object-top"
+          src={"/images/login-background.jpg"}
+          fill="true"
+          alt="login-background"
+          priority={true}
+        />
         <div className="w-full rounded-md bg-slate-900 p-6 shadow-md lg:max-w-xl">
           <div className="flex justify-center">
             <Image src={logo} alt="Logo proposta" width={120} height={40} />

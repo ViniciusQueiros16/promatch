@@ -17,7 +17,7 @@ const Login = () => {
           alt="login-background"
           priority={true}
         />
-        <div className="w-full rounded-md bg-theme-light p-6 shadow-md dark:bg-darkmode-theme-dark lg:max-w-xl">
+        <div className="w-full rounded-md bg-body p-6 shadow-md dark:bg-darkmode-body lg:max-w-xl">
           <div className="flex justify-center">
             <Image src={logo} alt="Logo proposta" width={120} height={40} />
           </div>
@@ -25,7 +25,7 @@ const Login = () => {
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-semibold bg-theme-light dark:bg-darkmode-theme-dark"
+                className="block text-sm font-semibold bg-body dark:bg-darkmode-body"
               >
                 Email
               </label>
@@ -37,7 +37,7 @@ const Login = () => {
             <div className="mb-2">
               <label
                 htmlFor="password"
-                className="block text-sm font-semibold bg-theme-light dark:bg-darkmode-theme-dark"
+                className="block text-sm font-semibold bg-body dark:bg-darkmode-body"
               >
                 Password
               </label>
@@ -60,7 +60,7 @@ const Login = () => {
           </form>
 
           <div className="relative mt-6 flex w-full items-center justify-center border border-t">
-            <div className="absolute bg-theme-light px-5 dark:bg-darkmode-theme-dark">
+            <div className="absolute bg-theme-light px-5 dark:bg-darkmode-body">
               Or
             </div>
           </div>
@@ -80,7 +80,7 @@ const Login = () => {
             </button>
           </div>
 
-          <p className="mt-4 text-center text-sm bg-theme-light dark:bg-darkmode-theme-dark">
+          <p className="mt-4 text-center text-sm bg-body dark:bg-darkmode-body">
             Don't have an account?{" "}
             <Link
               href="/signup"

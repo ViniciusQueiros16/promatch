@@ -1,14 +1,14 @@
 import Link from "next/link";
 
-const Button = ({ href, type, rel, children }) => {
+const Button = ({ href, type, rel, openInNewTab, children }) => {
   return (
     <Link
       href={href}
-      target="_blank"
+      target={openInNewTab ? "_blank" : "_self"}
       rel={`noopener noreferrer ${
         rel ? (rel === "follow" ? "" : rel) : "nofollow"
       }`}
-      className={`btn me-4 mb-4 ${
+      className={`btn ml-3  px-5 py-2 ${
         type === "outline" ? "btn-outline-primary" : "btn-primary"
       } border-primary hover:text-white hover:no-underline`}
     >

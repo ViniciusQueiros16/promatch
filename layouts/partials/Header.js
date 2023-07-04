@@ -1,13 +1,10 @@
 import Logo from "@components/Logo";
 import menu from "@config/menu.json";
-import socical from "@config/social.json";
-import Social from "@layouts/components/Social";
 import ThemeSwitcher from "@layouts/components/ThemeSwitcher";
-import SearchModal from "@partials/SearchModal";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { IoSearch } from "react-icons/io5";
+import Button from "@layouts/shortcodes/Button";
 
 const Header = () => {
   // distructuring the main menu from menu object
@@ -111,17 +108,14 @@ const Header = () => {
             </ul>
           </div>
 
-          <Link href="/login">
-            <button className={`btn ml-3  px-5 py-2 ${"btn-outline-primary"}`}>
-              I want to hire
-            </button>
-          </Link>
+          <Button href="/login" type="outline" rel="nofollow">
+            I want to hire
+          </Button>
 
-          <Link href="/login">
-            <button className={`btn ml-3  px-5 py-2 ${"btn-outline-primary"}`}>
-              I want to work
-            </button>
-          </Link>
+          <Button href="/login" type="outline" rel="nofollow">
+            I want to work
+          </Button>
+
           <ThemeSwitcher />
 
           <button

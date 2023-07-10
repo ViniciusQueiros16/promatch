@@ -5,8 +5,44 @@ import { Twitter, GitHub, Google } from "@mui/icons-material";
 import logo from "/public/images/promatch-logo.png";
 import Base from "@layouts/Baseof";
 import ImageFallback from "layouts/components/ImageFallback";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch(
+        "https://6fk13vng11.execute-api.us-east-2.amazonaws.com/production/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      const json = await response.json();
+      console.log(response.status);
+      console.log(json);
+
+      if (response.ok) {
+        // Lógica para tratamento de sucesso
+        console.log("Login realizado com sucesso!");
+      } else {
+        // Lógica para tratamento de erro
+        console.log("Falha ao realizar o login.");
+      }
+    } catch (error) {
+      // Lógica para tratamento de erro
+      console.log("Ocorreu um erro ao realizar o login:", error);
+    }
+  };
+
   return (
     <Base title="Login">
       <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
@@ -21,15 +57,16 @@ const Login = () => {
           <div className="flex justify-center">
             <Image src={logo} alt="Logo proposta" width={120} height={40} />
           </div>
-          <form className="mt-6 px-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-6 px-8">
             <div className="mb-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-semibold bg-body dark:bg-darkmode-body"
+                className="block bg-body text-sm font-semibold dark:bg-darkmode-body"
               >
                 Email
               </label>
               <input
+                {...register("usernameOrEmail", { required: true })}
                 type="email"
                 className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-gray-400 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
               />
@@ -37,11 +74,12 @@ const Login = () => {
             <div className="mb-2">
               <label
                 htmlFor="password"
-                className="block text-sm font-semibold bg-body dark:bg-darkmode-body"
+                className="block bg-body text-sm font-semibold dark:bg-darkmode-body"
               >
                 Password
               </label>
               <input
+                {...register("password", { required: true })}
                 type="password"
                 className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-gray-400 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
               />
@@ -53,7 +91,7 @@ const Login = () => {
               Forget Password?
             </Link>
             <div className="mt-2">
-              <button className="w-full transform rounded-md btn px-4 py-2 tracking-wide  btn-outline-primary">
+              <button className="btn btn-outline-primary w-full transform rounded-md px-4 py-2  tracking-wide">
                 Sign In
               </button>
             </div>
@@ -80,7 +118,7 @@ const Login = () => {
             </button>
           </div>
 
-          <p className="mt-4 text-center text-sm bg-body dark:bg-darkmode-body">
+          <p className="mt-4 bg-body text-center text-sm dark:bg-darkmode-body">
             Don't have an account?{" "}
             <Link
               href="/signup"

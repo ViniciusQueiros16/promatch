@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Twitter, GitHub, Google } from "@mui/icons-material";
+import { useRouter } from "next/router";
 import logo from "/public/images/promatch-logo.png";
 import Base from "@layouts/Baseof";
 import ImageFallback from "layouts/components/ImageFallback";
 import { useForm } from "react-hook-form";
+import { setCookie } from "cookies-next";
 
 const Login = () => {
   const {
@@ -13,6 +15,10 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     try {
@@ -27,19 +33,16 @@ const Login = () => {
         }
       );
       const json = await response.json();
-      console.log(response.status);
-      console.log(json);
 
-      if (response.ok) {
-        // Lógica para tratamento de sucesso
-        console.log("Login realizado com sucesso!");
-      } else {
-        // Lógica para tratamento de erro
-        console.log("Falha ao realizar o login.");
+      if (response.status !== 201) {
+        throw new Error(json);
       }
+
+      setCookie("authorization", json.token);
+
+      router.push("/");
     } catch (error) {
-      // Lógica para tratamento de erro
-      console.log("Ocorreu um erro ao realizar o login:", error);
+      console.log(error);
     }
   };
 
@@ -49,7 +52,7 @@ const Login = () => {
         <ImageFallback
           className="-z-[1] object-cover object-top"
           src={"/images/login-background.jpg"}
-          fill="true"
+          fill={true}
           alt="login-background"
           priority={true}
         />
@@ -60,16 +63,20 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="mt-6 px-8">
             <div className="mb-4">
               <label
-                htmlFor="email"
+                htmlFor="usernameOrEmail"
                 className="block bg-body text-sm font-semibold dark:bg-darkmode-body"
               >
                 Email
               </label>
               <input
                 {...register("usernameOrEmail", { required: true })}
-                type="email"
+                type="text"
+                id="usernameOrEmail"
                 className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-gray-400 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
               />
+              {errors.usernameOrEmail && (
+                <span>This field is required</span>
+              )}
             </div>
             <div className="mb-2">
               <label
@@ -81,20 +88,20 @@ const Login = () => {
               <input
                 {...register("password", { required: true })}
                 type="password"
+                id="password"
                 className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-gray-700 focus:border-gray-400 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
               />
+              {errors.password && <span>This field is required</span>}
             </div>
-            <Link
-              href="/forget"
-              className="text-xs text-blue-600 hover:underline"
-            >
+            <Link href="/forget" className="text-xs text-blue-600 hover:underline">
               Forget Password?
             </Link>
             <div className="mt-2">
-              <button className="btn btn-outline-primary w-full transform rounded-md px-4 py-2  tracking-wide">
+              <button className="btn btn-outline-primary w-full transform rounded-md px-4 py-2  tracking-wide" type="submit">
                 Sign In
               </button>
             </div>
+            {error && <p>{error}</p>}
           </form>
 
           <div className="relative mt-6 flex w-full items-center justify-center border border-t">
@@ -120,10 +127,7 @@ const Login = () => {
 
           <p className="mt-4 bg-body text-center text-sm dark:bg-darkmode-body">
             Don't have an account?{" "}
-            <Link
-              href="/signup"
-              className="font-medium text-blue-600 hover:underline"
-            >
+            <Link href="/signup" className="font-medium text-blue-600 hover:underline">
               Sign up
             </Link>
           </p>

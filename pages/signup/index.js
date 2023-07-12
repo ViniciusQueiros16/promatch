@@ -3,13 +3,13 @@ import AuthForm from "@layouts/components/AuthForm";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
 
-const Login = () => {
+const Signup = () => {
   const router = useRouter();
 
   const onSubmit = async (data) => {
     try {
       const response = await fetch(
-        "https://6fk13vng11.execute-api.us-east-2.amazonaws.com/production/login",
+        "https://6fk13vng11.execute-api.us-east-2.amazonaws.com/production/users",
         {
           method: "POST",
           headers: {
@@ -29,15 +29,20 @@ const Login = () => {
       router.push("/contractors");
     } catch (error) {
       console.log(error);
+      return { status: 500 };
     }
   };
 
   const fields = [
-    { name: "usernameOrEmail", label: "Email", type: "email" },
+    { name: "username", label: "Username", type: "text" },
+    { name: "name", label: "Name", type: "text" },
+    { name: "email", label: "Email", type: "email" },
     { name: "password", label: "Password", type: "password" },
   ];
 
-  return <AuthForm title="Login" fields={fields} onSubmit={onSubmit} />;
+  return (
+    <AuthForm title="Sign Up" fields={fields} onSubmit={onSubmit} signupPage />
+  );
 };
 
-export default Login;
+export default Signup;

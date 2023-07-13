@@ -1,10 +1,9 @@
 import { getCookie } from "cookies-next";
+import Feed from "@layouts/components/feed";
 
 const Contractors = () => {
   return (
-    <div>
-      <h1>Hello Word!</h1>
-    </div>
+   <Feed></Feed>
   );
 };
 

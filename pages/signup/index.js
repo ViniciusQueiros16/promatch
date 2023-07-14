@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthForm from "@layouts/components/AuthForm";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
 
 const Signup = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
 
   const onSubmit = async (data) => {
     try {
@@ -21,15 +22,14 @@ const Signup = () => {
       const json = await response.json();
 
       if (response.status !== 201) {
-        throw new Error(json);
+        throw new Error(json.error);
       }
 
       setCookie("authorization", json.token);
 
       router.push("/contractors");
     } catch (error) {
-      console.log(error);
-      return { status: 500 };
+      setError(error.message + " Unable to register. Try again!");
     }
   };
 
@@ -41,7 +41,13 @@ const Signup = () => {
   ];
 
   return (
-    <AuthForm title="Sign Up" fields={fields} onSubmit={onSubmit} signupPage />
+    <AuthForm
+      title="Sign Up"
+      fields={fields}
+      onSubmit={onSubmit}
+      error={error}
+      signupPage
+    />
   );
 };
 

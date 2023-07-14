@@ -7,7 +7,7 @@ import Base from "@layouts/Baseof";
 import ImageFallback from "layouts/components/ImageFallback";
 import { useForm } from "react-hook-form";
 
-const AuthForm = ({ title, fields, onSubmit, signupPage }) => {
+const AuthForm = ({ title, fields, onSubmit, error, signupPage }) => {
   const {
     register,
     handleSubmit,
@@ -50,6 +50,11 @@ const AuthForm = ({ title, fields, onSubmit, signupPage }) => {
                 {errors[field.name] && <span>This field is required</span>}
               </div>
             ))}
+            {error && (
+              <p className="flex justify-between rounded-md border-b border-red-400 bg-red-50 p-2 text-sm font-bold text-red-800">
+                {error}
+              </p>
+            )}
             <div className="mt-2">
               <button
                 className="btn btn-outline-primary w-full transform rounded-md px-4 py-2  tracking-wide"

@@ -1,0 +1,67 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "url": "/contractors",
+      "icon": "Home"
+    },
+    {
+      "name": "Network",
+      "url": "/network",
+      "icon": "AccountTree"
+    },
+    {
+      "name": "Jobs",
+      "url": "/jobs",
+      "icon": "Work"
+    },
+    {
+      "name": "Messaging",
+      "url": "/messaging",
+      "icon": "Chat"
+    },
+    {
+      "name": "Notification",
+      "url": "/notification",
+      "icon": "Notifications"
+    },
+    {
+      "name": "Me",
+      "url": "",
+      "icon": "Person",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Show Profile",
+          "url": "/profile"
+        },
+        {
+          "name": "Account",
+          "url": "/account"
+        },
+        {
+          "name": "Settings",
+          "url": "/settings"
+        }
+      ]
+    }
+  ],
+  "footer": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    },
+    {
+      "name": "Privacy Policy",
+      "url": "#"
+    }
+  ]
+}

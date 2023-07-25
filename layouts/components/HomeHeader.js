@@ -1,56 +1,165 @@
-import React from "react";
-
-import { RiAccountCircleFill } from "react-icons/ri";
+import Logo from "@components/Logo";
+import menu from "@config/menuContractors.json";
+import ThemeSwitcher from "@layouts/components/ThemeSwitcher";
+import SearchModal from "@layouts/partials/SearchModal";
+import Link from "next/link";
 import {
-  AiFillHome,
-  AiOutlineUnorderedList,
-  AiFillMessage,
-} from "react-icons/ai";
-import { IoMdNotifications } from "react-icons/io";
-import { BsFillPeopleFill } from "react-icons/bs";
-import { MdWork } from "react-icons/md";
+  Home,
+  AccountTree,
+  Work,
+  Chat,
+  Notifications,
+  Person,
+} from "@mui/icons-material";
 
-import HomeHeaderLink from "./HomeHeaderLink";
-import { Input } from "@mui/material";
-import ImageFallback from "./ImageFallback";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { IoSearch } from "react-icons/io5";
 
 const HomeHeader = () => {
-  return (
-    <div className="sticky top-0 z-50 border-b bg-white shadow-sm ">
-      <header className="mx-5 flex max-w-6xl justify-between lg:mx-auto">
-        <div className="m-auto flex justify-center">
-          <ImageFallback
-            src="/images/promatch-logo.png"
-            className="p-3"
-            width={85} height={80}
-          />
+  // distructuring the main menu from menu object
+  const { main } = menu;
 
-          <Input
-            className="m-2"
-            placeholder="Search"
-            height="35px"
-            borderRadius="10px"
-          />
+  // states declaration
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [searchModal, setSearchModal] = useState(false);
+
+  // Router
+  const router = useRouter();
+
+  //stop scrolling when nav is open
+  useEffect(() => {
+    if (showMenu) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+  }, [showMenu]);
+
+  return (
+    <header className="header">
+      <nav className="navbar container px-1 sm:px-8">
+        <div className="order-0">
+          <Logo />
         </div>
-        <div className="flex items-center divide-gray-300 sm:divide-x">
-          <div className="hidden space-x-8 pr-4 sm:flex">
-            <HomeHeaderLink Icon={AiFillHome} text="Home" />
-            <HomeHeaderLink Icon={BsFillPeopleFill} text="Network" />
-            <HomeHeaderLink Icon={MdWork} text="Jobs" />
-            <HomeHeaderLink Icon={AiFillMessage} text="Messaging" />
-            <div className="relative">
-              <HomeHeaderLink Icon={IoMdNotifications} text="Notification" />
-              <div className="absolute -top-2 right-3 flex h-5 w-5 animate-ping items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                3
-              </div>
-            </div>
-            <HomeHeaderLink Icon={RiAccountCircleFill} text="Me" />
-            <span className="hidden h-0.5 w-[calc(100%+20px)] rounded-t-full bg-black dark:bg-white lg:inline-flex" />
-            <HomeHeaderLink Icon={AiOutlineUnorderedList} text="Work" />
+        <div className="flex items-center space-x-4 xl:space-x-8">
+          <div
+            className={`collapse-menu ${
+              !showMenu && "translate-x-full"
+            } lg:flex lg:translate-x-0`}
+          >
+            <button
+              className="absolute right-6 top-11 lg:hidden"
+              onClick={() => setShowMenu(false)}
+            >
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <title>Menu Close</title>
+                <polygon
+                  points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+                  transform="rotate(45 10 10)"
+                />
+              </svg>
+            </button>
+            <ul
+              id="nav-menu"
+              className="navbar-nav w-full md:w-auto md:space-x-1 lg:flex xl:space-x-2"
+            >
+              {main.map((menu, i) => (
+                <React.Fragment key={`menu-${i}`}>
+                  {menu.hasChildren ? (
+                    <li className="nav-item nav-dropdown group relative">
+                      <span
+                        className={`nav-link ${
+                          menu.children
+                            .map((c) => c.url)
+                            .includes(router.asPath) && "active"
+                        } inline-flex items-center`}
+                      >
+                        {React.createElement({ Home, AccountTree, Work, Chat, Notifications, Person }[menu.icon])}
+                        <span className="pl-2">{menu.name}</span>
+                        <svg
+                          className="h-4 w-4 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
+                      <ul className="nav-dropdown-list hidden transition-all duration-300 group-hover:top-[46px] group-hover:block md:invisible md:absolute md:top-[60px] md:block md:opacity-0 md:group-hover:visible md:group-hover:opacity-100">
+                        {menu.children.map((child, i) => (
+                          <li
+                            className="nav-dropdown-item"
+                            key={`children-${i}`}
+                          >
+                            <Link
+                              href={child.url}
+                              className={`nav-dropdown-link block ${
+                                router.asPath === child.url && "active"
+                              }`}
+                            >
+                              {child.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ) : (
+                    <li className="nav-item">
+                      <Link
+                        href={menu.url}
+                        className={`nav-link block ${
+                          router.asPath === menu.url && "active"
+                        }`}
+                      >
+                        {React.createElement({ Home, AccountTree, Work, Chat, Notifications, Person }[menu.icon])}
+                        <span className="pl-2">{menu.name}</span>
+                      </Link>
+                    </li>
+                  )}
+                </React.Fragment>
+              ))}
+            </ul>
           </div>
+
+          <div
+            className="search-icon"
+            onClick={() => {
+              setSearchModal(true);
+            }}
+          >
+            <IoSearch />
+          </div>
+          <ThemeSwitcher />
+
+          <button
+            onClick={() => setShowMenu(!showMenu)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white lg:hidden"
+          >
+            {showMenu ? (
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <title>Menu Close</title>
+                <polygon
+                  points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+                  transform="rotate(45 10 10)"
+                />
+              </svg>
+            ) : (
+              <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                <title>Menu Open</title>
+                <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z" />
+              </svg>
+            )}
+          </button>
         </div>
-      </header>
-    </div>
+        <SearchModal
+          searchModal={searchModal}
+          setSearchModal={setSearchModal}
+        />
+      </nav>
+      {showMenu && (
+        <div className="header-backdrop absolute left-0 top-0 h-[100vh] w-full bg-black/50 lg:hidden"></div>
+      )}
+    </header>
   );
 };
 export default HomeHeader;

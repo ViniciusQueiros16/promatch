@@ -12,7 +12,7 @@ const Contractors = ({ session }) => {
       <div className="mx-auto mt-8 max-h-screen overflow-hidden lg:max-w-6xl">
         <main className="grid grid-cols-9">
           <ProfileSide session={session} />
-          <Feed />
+          <Feed session={session} />
           <RightHandSide session={session} />
         </main>
       </div>

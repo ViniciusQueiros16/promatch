@@ -28,7 +28,7 @@ const HomePostInput = ({ session }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg p-3 space-y-3 border border-gray-300 dark:border-none">
+    <div className=" bg-theme-light dark:bg-darkmode-body rounded-lg p-3 space-y-3 border border-gray-300 dark:border-none">
       <div className="flex items-center space-x-2">
         <Avatar
           name={session?.username}

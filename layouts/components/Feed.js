@@ -12,7 +12,7 @@ const Feed = ({ session }) => {
       caption: "Este é um post de exemplo!", // Legenda do post
       communityType: "AnyOne", // Tipo de comunidade ("AnyOne", "Group", "Twitter", etc.)
       avatar: "https://example.com/image.jpg", // URL da imagem do post
-      timestamp: new Date(), // Data/hora do post
+      timestamp: 1679795200, // Data/hora do post
       username: "user1", // Nome de usuário
       company: "Empresa XYZ", // Nome da empresa (opcional)
     };

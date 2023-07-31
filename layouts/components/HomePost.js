@@ -175,9 +175,13 @@ const HomePost = ({
             {company}
           </Typography>
 
-          <Grid style={{ marginTop: "-4px" }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            style={{ marginTop: "-4px" }}
+          >
             <Typography fontSize="10pt">
-              {moment(new Date(timestamp?.seconds * 1000)).fromNow()}
+              {moment(new Date(timestamp * 1000)).fromNow()}
             </Typography>
             {communityType === "AnyOne" ? (
               <Icon
@@ -185,8 +189,6 @@ const HomePost = ({
                 style={{
                   fontSize: "15px",
                   color: "gray",
-                  marginTop: "auto",
-                  marginBottom: "auto",
                   marginLeft: "10px",
                 }}
               />
@@ -196,8 +198,6 @@ const HomePost = ({
                 style={{
                   fontSize: "15px",
                   color: "gray",
-                  marginTop: "auto",
-                  marginBottom: "auto",
                   marginLeft: "10px",
                 }}
               />
@@ -207,13 +207,11 @@ const HomePost = ({
                 style={{
                   fontSize: "15px",
                   color: "gray",
-                  marginTop: "auto",
-                  marginBottom: "auto",
                   marginLeft: "10px",
                 }}
               />
             )}
-          </Grid>
+          </Stack>
         </Stack>
         <Grid className="ml-80 flex">
           <MdMoreHoriz className=" h-5 cursor-pointer" />

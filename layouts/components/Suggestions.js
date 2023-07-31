@@ -8,14 +8,14 @@ const Suggestions = () => {
 
   useEffect(() => {
     const suggestions = [...Array(4)].map((_, i) => ({
-      userId: faker.datatype.uuid(),
+      userId: faker.string.uuid(),
       username: faker.internet.userName(),
       email: faker.internet.email(),
       avatar: faker.image.avatar(),
       password: faker.internet.password(),
       birthdate: faker.date.birthdate(),
       registeredAt: faker.date.past(),
-      company: faker.company.bs(),
+      company: faker.company.buzzPhrase(),
       id: i,
     }));
     setSuggestions(suggestions);
@@ -61,7 +61,7 @@ const Suggestions = () => {
       <div className="sticky top-20 m-auto h-64 w-11/12 rounded-lg border border-gray-300 bg-theme-light px-2.5 dark:border-none  dark:bg-darkmode-body">
         <div className="relative h-full w-full">
           <ImageFallback
-            src="/images/trabalhadores.png"
+            src="/images/businessproposal.png"
             className=""
             width={300}
             height={300}

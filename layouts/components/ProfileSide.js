@@ -21,6 +21,7 @@ const ProfileSide = ({ session }) => {
               height="100"
               width="200"
               src="/images/background.jpg"
+              alt="image background"
             />
           </div>
           <Avatar

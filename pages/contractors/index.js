@@ -10,7 +10,8 @@ const Contractors = ({ session }) => {
     <>
       <HomeHeader />
       <div className="mx-auto mt-8 max-h-screen overflow-hidden lg:max-w-6xl">
-        <main className="grid grid-cols-9">
+        <main className="grid grid-cols-9 gap-x-4">
+          {" "}
           <ProfileSide session={session} />
           <Feed session={session} />
           <RightHandSide session={session} />
@@ -29,7 +30,7 @@ export const getServerSideProps = async ({ req, res }) => {
 
     // Generate fake user session data using faker
     const session = {
-      userId: faker.datatype.uuid(),
+      userId: faker.string.uuid(),
       username: faker.internet.userName(),
       email: faker.internet.email(),
       avatar: faker.image.avatar(),

@@ -8,7 +8,7 @@ const Feed = ({ session }) => {
   useEffect(() => {
     // Simulação de dados fictícios para um post
     const fakePost = {
-      userId: "user-1", // ID do usuário que fez o post
+      id_user: "user-1", // ID do usuário que fez o post
       caption: "Este é um post de exemplo!", // Legenda do post
       communityType: "AnyOne", // Tipo de comunidade ("AnyOne", "Group", "Twitter", etc.)
       avatar: "https://example.com/image.jpg", // URL da imagem do post
@@ -29,10 +29,10 @@ const Feed = ({ session }) => {
       <hr />
       <div className="mt-5">
         {posts.map((post) => (
-          <div key={post.userId}>
+          <div key={post.id_user}>
             <HomePost
               session={session}
-              id={session.userId}
+              id={session.id_user}
               caption={post.caption}
               communityType={post.communityType}
               image={session.avatar}

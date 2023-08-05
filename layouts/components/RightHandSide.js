@@ -1,8 +1,7 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import Suggestions from "./Suggestions";
 
-const RightHandSide = ({ session }) => {
+const RightHandSide = () => {
   return (
     <div className="hidden md:col-span-1 xl:inline-grid">
       <div

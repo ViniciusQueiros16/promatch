@@ -1,9 +1,11 @@
+import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
 import ImageFallback from "./ImageFallback";
+import { SessionContext } from "context/SessionContext";
 
-const ProfileSide = ({ session }) => {
+const ProfileSide = () => {
+  const user = useContext(SessionContext);
   const [speed, setSpeed] = useState();
 
   useEffect(() => {
@@ -25,21 +27,21 @@ const ProfileSide = ({ session }) => {
             />
           </div>
           <Avatar
-            name={session.username}
+            name={user?.username}
             // onClick={() => signOut()}
             src={
-              session.avatar
-                ? session.avatar
+              user?.avatar
+                ? user?.avatar
                 : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
             }
             className="!absolute !top-9 !h-14 !w-14 !cursor-pointer !border-2"
           />
           <div className="mt-5 space-x-0.5 py-4">
             <h4 className="cursor-pointer decoration-purple-700 underline-offset-1 hover:underline">
-              {session.username}
+              {user?.username}
             </h4>
             <p className="text-sm text-dark dark:text-darkmode-light">
-              {session.email}
+              {user?.email}
             </p>
           </div>
 

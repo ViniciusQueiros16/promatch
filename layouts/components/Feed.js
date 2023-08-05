@@ -1,8 +1,11 @@
+import React, { useContext, useEffect, useState } from "react";
 import HomePost from "./HomePost";
 import HomePostInput from "./HomePostInput";
-import React, { useEffect, useState } from "react";
+import { SessionContext } from "context/SessionContext";
 
-const Feed = ({ session }) => {
+const Feed = () => {
+  const user = useContext(SessionContext);
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -24,22 +27,22 @@ const Feed = ({ session }) => {
   return (
     <div className="scrollbar-hide col-span-full max-h-screen items-center overflow-scroll border-x lg:col-span-5 xl:mr-5">
       <div>
-        <HomePostInput session={session} />
+        <HomePostInput user={user} />
       </div>
       <hr />
       <div className="mt-5">
         {posts.map((post) => (
           <div key={post.id_user}>
             <HomePost
-              session={session}
-              id={session.id_user}
+              user={user}
+              id={user?.id_user}
               caption={post.caption}
               communityType={post.communityType}
-              image={session.avatar}
-              profileImage={session.avatar}
+              image={user?.avatar}
+              profileImage={user?.avatar}
               company={post.company}
               timestamp={post.timestamp}
-              username={session.username}
+              username={user?.username}
             />
           </div>
         ))}

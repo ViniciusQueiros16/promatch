@@ -26,8 +26,9 @@ const Login = () => {
         throw new Error(json.error);
       }
 
-      setCookie("authorization", json.token);
-      setCookie("user", json.username);
+      setCookie("authorization", json.Token, {
+        maxAge: 60 * 60 * 1, // 1 hour
+      });
 
       router.push("/contractors");
     } catch (error) {

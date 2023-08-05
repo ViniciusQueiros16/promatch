@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { BsYoutube } from "react-icons/bs";
 import { IoMdPhotos } from "react-icons/io";
 import { MdAssignment, MdEventNote } from "react-icons/md";
-
 // import CreatePost from "./CreatePost";
-import { Avatar, Input } from "@mui/material";
+import { Avatar} from "@mui/material";
+import { SessionContext } from "context/SessionContext";
 
-const HomePostInput = ({ session }) => {
+const HomePostInput = () => {
+  const user = useContext(SessionContext);
   const [speed, setSpeed] = useState();
+
 
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
 
@@ -28,10 +30,10 @@ const HomePostInput = ({ session }) => {
     <div className=" space-y-3 rounded-lg border border-gray-300 bg-theme-light p-3 dark:border-none dark:bg-darkmode-body">
       <div className="flex items-center space-x-2">
         <Avatar
-          name={session?.username}
+          name={user?.username}
           src={
-            session?.avatar
-              ? session?.avatar
+            user?.avatar
+              ? user?.avatar
               : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
           }
           className="!h-10 !w-10 cursor-pointer"

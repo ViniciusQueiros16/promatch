@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
+import api from "services/api";
 
 const SessionContext = createContext(null);
 
@@ -9,29 +10,17 @@ const SessionContextProvider = ({ children }) => {
   const authenticateToken = async () => {
     try {
       const token = getCookie("authorization");
-      console.log(token);
-      if (!token) throw new Error("Token Invalido!");
 
-      const sessionResponse = await fetch(
-        `https://6fk13vng11.execute-api.us-east-2.amazonaws.com/production/users/profile?userID=${token}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      if (!token) throw new Error("Token Inválido!");
 
-      if (!sessionResponse.ok)
-        throw new Error("Erro ao obter a sessão do usuário.");
+      const sessionResponse = await api.get(`users/profile?token=${token}`);
 
-      const userData = await sessionResponse.json();
-
-      console.log(userData);
+      const userData = sessionResponse.data;
 
       setUser(userData);
     } catch (error) {
       setUser(null);
+      setError(error.message);
     }
   };
 

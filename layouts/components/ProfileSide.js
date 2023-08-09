@@ -1,16 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
-import { BsFillBookmarkStarFill } from "react-icons/bs";
 import ImageFallback from "./ImageFallback";
+import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { SessionContext } from "context/SessionContext";
+import ButtonLogout from "./ButtonLogout";
 
 const ProfileSide = () => {
   const user = useContext(SessionContext);
   const [speed, setSpeed] = useState();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setSpeed(Math.floor(Math.random() * 5000));
   }, []);
+
+  const handleAvatarClick = () => {
+    setShowModal(true);
+  };
 
   return (
     <div className="hidden md:col-span-2 xl:inline-grid">
@@ -28,7 +34,7 @@ const ProfileSide = () => {
           </div>
           <Avatar
             name={user?.username}
-            // onClick={() => signOut()}
+            onClick={handleAvatarClick}
             src={
               user?.avatar
                 ? user?.avatar
@@ -36,6 +42,7 @@ const ProfileSide = () => {
             }
             className="!absolute !top-9 !h-14 !w-14 !cursor-pointer !border-2"
           />
+          <ButtonLogout showModal={showModal} setShowModal={setShowModal} />
           <div className="mt-5 space-x-0.5 py-4">
             <h4 className="cursor-pointer decoration-purple-700 underline-offset-1 hover:underline">
               {user?.username}
@@ -44,7 +51,6 @@ const ProfileSide = () => {
               {user?.email}
             </p>
           </div>
-
           <div className="hidden text-left text-sm text-gray-500 md:inline">
             <div className="sidebarButton space-y-0.5 font-medium">
               <div className="flex justify-between space-x-2">

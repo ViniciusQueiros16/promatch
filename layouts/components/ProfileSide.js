@@ -3,7 +3,7 @@ import { Avatar } from "@mui/material";
 import ImageFallback from "./ImageFallback";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { SessionContext } from "context/SessionContext";
-import ButtonLogout from "./ButtonLogout";
+import ButtonLogout from "./Logout";
 
 const ProfileSide = () => {
   const user = useContext(SessionContext);

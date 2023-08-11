@@ -3,25 +3,24 @@ import React, { useContext, useEffect, useState } from "react";
 import { BsYoutube } from "react-icons/bs";
 import { IoMdPhotos } from "react-icons/io";
 import { MdAssignment, MdEventNote } from "react-icons/md";
-// import CreatePost from "./CreatePost";
 import { Avatar } from "@mui/material";
 import { SessionContext } from "context/SessionContext";
+import CreatePost from "./CreatePost";
 
 const HomePostInput = () => {
   const user = useContext(SessionContext);
   const [speed, setSpeed] = useState();
-
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
 
   useEffect(() => {
     setSpeed(Math.floor(Math.random() * 5000));
   }, []);
 
-  const handleCreatePostOpen = () => {
+  const handleOpenCreatePost = () => {
     setIsCreatePostOpen(true);
   };
 
-  const handleCreatePostClose = () => {
+  const handleCloseCreatePost = () => {
     setIsCreatePostOpen(false);
   };
 
@@ -40,17 +39,15 @@ const HomePostInput = () => {
 
         <input
           type="text"
-          className="peer block min-h-[auto] w-full rounded border border-gray-400 bg-white px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+          className="bordermt-2 block w-full rounded-lg  border-blue-700 bg-white px-4 py-2 text-gray-700 focus:border-green-700 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40"
           id="exampleFormControlInput1"
           placeholder="Have a topic that excites you? Post about it"
-          onClick={handleCreatePostOpen}
+          onClick={handleOpenCreatePost}
         />
 
-        <>
-          {/* {isCreatePostOpen && (
-          <CreatePost onClose={handleCreatePostClose} speed={speed} />
-        )} */}
-        </>
+        {isCreatePostOpen && (
+          <CreatePost open={isCreatePostOpen} onClose={handleCloseCreatePost} speed={speed} />
+        )}
       </div>
       <div className="flex flex-wrap items-center justify-center gap-4 md:gap-x-10">
         <button className="inputButton group">

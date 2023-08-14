@@ -260,3 +260,8 @@ footer .socials {
 .btn {
   @apply h-7 hover:scale-125 cursor-pointer transition-all duration-150 ease-out;
 }
+
+// footer icon style
+.footer-icons {
+  @apply cursor-pointer rounded-md text-2xl group-hover:text-blue-500 active:border-b-2 active:border-blue-500 sm:h-10  md:hover:bg-gray-300;
+}

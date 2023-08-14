@@ -28,49 +28,29 @@ const ModalFooterIcon = ({
   };
   return (
     <>
-      <Box className="flex items-center space-x-2 md:space-x-7">
+      <Box className="flex items-center space-x-4 md:space-x-8">
         <Icon
           as={IoMdPhotos}
           cursor="pointer"
-          className="pointer-events-auto rounded-md text-2xl hover:bg-gray-300"
+          className="footer-icons"
           onClick={handleOpen}
         />
 
-        <Icon
-          as={GrYoutube}
-          cursor="pointer"
-          className="rounded-md text-2xl hover:bg-gray-300"
-        />
+        <Icon as={GrYoutube} cursor="pointer" className="footer-icons" />
 
-        <Icon
-          as={MdDescription}
-          cursor="pointer"
-          className="rounded-md text-2xl hover:bg-gray-300"
-        />
+        <Icon as={MdDescription} cursor="pointer" className="footer-icons" />
 
-        <Icon
-          as={MdWork}
-          cursor="pointer"
-          className="rounded-md text-2xl hover:bg-gray-300"
-        />
+        <Icon as={MdWork} cursor="pointer" className="footer-icons" />
 
-        <Icon
-          as={MdSportsBaseball}
-          cursor="pointer"
-          className="rounded-md text-2xl hover:bg-gray-300"
-        />
+        <Icon as={MdSportsBaseball} cursor="pointer" className="footer-icons" />
 
         <Icon
           as={BsFillBarChartFill}
           cursor="pointer"
-          className="rounded-md text-2xl hover:bg-gray-300"
+          className="footer-icons"
         />
 
-        <Icon
-          as={MdMoreHoriz}
-          cursor="pointer"
-          className="rounded-md text-2xl hover:bg-gray-300"
-        />
+        <Icon as={MdMoreHoriz} cursor="pointer" className="footer-icons" />
         <div className="ml-8 border-l-2 border-gray-500"></div>
         {/* <Button
           colorScheme="gray"

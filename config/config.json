@@ -5,8 +5,8 @@
     "favicon": "/images/favicon.png",
     "logo": "/images/promatch-logo.png",
     "logo_white": "/images/promatch-logo.png",
-    "logo_width": "150",
-    "logo_height": "150",
+    "logo_width": "100",
+    "logo_height": "60",
     "logo_text": "promatch"
   },
   "settings": {

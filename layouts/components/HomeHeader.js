@@ -13,10 +13,12 @@ import {
 } from "@mui/icons-material";
 
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
+import { SessionContext } from "context/SessionContext";
 
 const HomeHeader = () => {
+  const user = useContext(SessionContext);
   // distructuring the main menu from menu object
   const { main } = menu;
 
@@ -76,7 +78,25 @@ const HomeHeader = () => {
                             .includes(router.asPath) && "active"
                         } inline-flex items-center`}
                       >
-                        {React.createElement({ Home, AccountTree, Work, Chat, Notifications, Person }[menu.icon])}
+                        {menu.icon === "Person" && user?.avatar ? (
+                          <img
+                            src={user.avatar}
+                            alt="User Avatar"
+                            className=" h-8 w-8 cursor-pointer rounded-full"
+                          />
+                        ) : (
+                          React.createElement(
+                            {
+                              Home,
+                              AccountTree,
+                              Work,
+                              Chat,
+                              Notifications,
+                              Person,
+                            }[menu.icon]
+                          )
+                        )}
+
                         <span className="pl-2">{menu.name}</span>
                         <svg
                           className="h-4 w-4 fill-current"
@@ -111,7 +131,16 @@ const HomeHeader = () => {
                           router.asPath === menu.url && "active"
                         }`}
                       >
-                        {React.createElement({ Home, AccountTree, Work, Chat, Notifications, Person }[menu.icon])}
+                        {React.createElement(
+                          {
+                            Home,
+                            AccountTree,
+                            Work,
+                            Chat,
+                            Notifications,
+                            Person,
+                          }[menu.icon]
+                        )}
                         <span className="pl-2">{menu.name}</span>
                       </Link>
                     </li>

@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { GrYoutube } from "react-icons/gr";
+import ImageFallback from "./ImageFallback";
 
 const ModalFooterIcon = ({
   communityType,
@@ -72,11 +73,12 @@ const ModalFooterIcon = ({
           <Box direction="column" justify="center" align="center" width="100%">
             {selectedFile ? (
               <>
-                <Image
+                <ImageFallback
                   src={selectedFile}
-                  maxWidth="400px"
-                  maxHeight="400px"
-                  className="mb-4"
+                  className="h-full w-full"
+                  height="100"
+                  width="200"
+                  alt="selected image"
                 />
                 <Stack direction="row" mt={4}>
                   <Button
@@ -89,7 +91,7 @@ const ModalFooterIcon = ({
                   </Button>
                   <Button
                     height="28px"
-                    onClick={onClose}
+                    onClick={handleClose}
                     className="rounded-md"
                   >
                     Done
@@ -109,10 +111,9 @@ const ModalFooterIcon = ({
                   className="mb-4"
                 >
                   <Button
-                    variant="outline"
                     height="28px"
                     onClick={() => selectedFileRef.current?.click()}
-                    className="rounded-md"
+                    className="rounded-md bg-green-200"
                   >
                     Select images to share
                   </Button>

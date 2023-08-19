@@ -6,7 +6,6 @@ import {
   Checkbox,
   Icon,
   Menu,
-  MenuButton,
   MenuList,
   Modal,
   Stack,
@@ -18,10 +17,13 @@ import useSelectFile from "@hooks/useSelectFile";
 import ModalFooterIcon from "./ModalFooterIcon";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import { SessionContext } from "context/SessionContext";
+import api from "services/api";
+import { MenuButton } from "@mui/base";
 
 const CreatePost = ({ open, onClose, speed }) => {
   const user = useContext(SessionContext);
   const [communityType, setCommunityType] = useState("AnyOne");
+  const [hashtag, setHashtag] = useState("");
   const { selectedFile, setSelectedFile, onSelectedFile } = useSelectFile();
   const [loading, setLoading] = useState(false);
   const [textInput, setTextInput] = useState({ title: "", body: "" });
@@ -34,9 +36,25 @@ const CreatePost = ({ open, onClose, speed }) => {
     setHashtag("#");
   };
 
-  const handleCreateCommunity = async () => {
+  const handleCreatePost = async () => {
     setLoading(true);
-    // Request
+    try {
+      const data = {
+        user_id: user?.user_id,
+        message: textInput.body,
+        community_type: communityType,
+      };
+      if (selectedFile) {
+        const base64Data = selectedFile.split(",")[1]; // Extract base64 data after command
+        data.image_url = base64Data;
+      }
+
+      const response = await api.post("post", data);
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
     setLoading(false);
     textInput.body = "";
     setSelectedFile("");
@@ -206,7 +224,7 @@ const CreatePost = ({ open, onClose, speed }) => {
             </Button>
             <Button
               className="btn btn-primary ml-3 border-primary px-5 py-2  hover:text-blue-700 "
-              onClick={handleCreateCommunity}
+              onClick={handleCreatePost}
               disabled={!textInput.body}
               isLoading={loading}
             >

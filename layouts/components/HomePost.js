@@ -1,14 +1,5 @@
 import { Avatar, Icon, Input, Grid, Stack, Typography } from "@mui/material";
 import { faker } from "@faker-js/faker";
-// import {
-//   addDoc,
-//   collection,
-//   deleteDoc,
-//   doc,
-//   onSnapshot,
-//   serverTimestamp,
-//   setDoc,
-// } from "firebase/firestore";
 import { motion } from "framer-motion";
 import { shuffle } from "lodash";
 import moment from "moment";
@@ -44,11 +35,10 @@ const SecondIconImage = [
 ];
 
 const HomePost = ({
-  session,
-  caption,
+  message,
   communityType,
   image,
-  profileImage,
+  avatar,
   timestamp,
   username,
   company,
@@ -161,8 +151,8 @@ const HomePost = ({
           className="mr-3 h-12 cursor-pointer
         rounded-full border object-contain p-1"
           src={
-            profileImage
-              ? profileImage
+            avatar
+              ? avatar
               : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
           }
         />
@@ -181,7 +171,7 @@ const HomePost = ({
             style={{ marginTop: "-4px" }}
           >
             <Typography fontSize="10pt">
-              {moment(new Date(timestamp * 1000)).fromNow()}
+              {moment(timestamp).fromNow()}
             </Typography>
             {communityType === "AnyOne" ? (
               <Icon
@@ -223,7 +213,7 @@ const HomePost = ({
         marginRight="10px"
         marginBottom="10px"
       >
-        {caption}
+        {message}
       </Typography>
       {image && <img src={image} className="w-full object-cover" alt="" />}
 

@@ -2,47 +2,55 @@ import React, { useContext, useEffect, useState } from "react";
 import HomePost from "./HomePost";
 import HomePostInput from "./HomePostInput";
 import { SessionContext } from "context/SessionContext";
+import api from "services/api";
 
 const Feed = () => {
   const user = useContext(SessionContext);
-
   const [posts, setPosts] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    // Simulação de dados fictícios para um post
-    const fakePost = {
-      id_user: "user-1", // ID do usuário que fez o post
-      caption: "Este é um post de exemplo!", // Legenda do post
-      communityType: "AnyOne", // Tipo de comunidade ("AnyOne", "Group", "Twitter", etc.)
-      avatar: "https://example.com/image.jpg", // URL da imagem do post
-      timestamp: 1679795200, // Data/hora do post
-      username: "user1", // Nome de usuário
-      company: "Empresa XYZ", // Nome da empresa (opcional)
+    const getPosts = async () => {
+      try {
+        const response = await api.get(`post?page=${page}`);
+        setPosts((prevPosts) => [...prevPosts, ...response.data]);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
     };
 
-    // Adicione o post fictício ao estado de posts
-    setPosts([fakePost]);
-  }, []);
+    getPosts();
+  }, [page]); // Only run this effect when 'page' changes
+
+  const handleScroll = (event) => {
+    const { scrollTop, scrollHeight, clientHeight } = event.target;
+    if (scrollHeight - scrollTop === clientHeight) {
+      const nextPage = page + 1;
+      setPage(nextPage);
+    }
+  };
 
   return (
-    <div className="scrollbar-hide col-span-full max-h-screen items-center overflow-scroll border-x lg:col-span-5 xl:mr-5">
+    <div
+      className="scrollbar-hide col-span-full max-h-screen items-center overflow-scroll border-x lg:col-span-5 xl:mr-5"
+      onScroll={handleScroll}
+    >
       <div>
         <HomePostInput user={user} />
       </div>
       <hr />
       <div className="mt-5">
         {posts.map((post) => (
-          <div key={post.id_user}>
+          <div key={post.id}>
             <HomePost
-              user={user}
-              id={user?.id_user}
-              caption={post.caption}
+              id={post.id}
+              message={post.message}
               communityType={post.communityType}
-              image={user?.avatar}
-              profileImage={user?.avatar}
+              image={post.image_url}
+              avatar={post.avatar}
               company={post.company}
               timestamp={post.timestamp}
-              username={user?.username}
+              username={post.username}
             />
           </div>
         ))}

@@ -8,7 +8,7 @@ const Suggestions = () => {
 
   useEffect(() => {
     const suggestions = [...Array(4)].map((_, i) => ({
-      id_user: faker.string.uuid(),
+      user_id: faker.string.uuid(),
       username: faker.internet.userName(),
       email: faker.internet.email(),
       avatar: faker.image.avatar(),
@@ -31,7 +31,7 @@ const Suggestions = () => {
           </h3>
         </div>
         {suggestions.map((profile, key) => (
-          <div key={profile.id_user}>
+          <div key={profile.user_id}>
             <div className="m-2 mb-3 flex items-center justify-between">
               <img
                 className="h-10 w-10

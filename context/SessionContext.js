@@ -6,6 +6,7 @@ const SessionContext = createContext(null);
 
 const SessionContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
   const authenticateToken = async () => {
     try {
@@ -18,6 +19,7 @@ const SessionContextProvider = ({ children }) => {
       const userData = sessionResponse.data;
 
       setUser(userData);
+      setError(null);
     } catch (error) {
       setUser(null);
       setError(error.message);
@@ -29,7 +31,9 @@ const SessionContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <SessionContext.Provider value={user}>{children}</SessionContext.Provider>
+    <SessionContext.Provider value={{ user, error }}>
+      {children}
+    </SessionContext.Provider>
   );
 };
 

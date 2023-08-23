@@ -13,14 +13,22 @@ const Feed = () => {
     const getPosts = async () => {
       try {
         const response = await api.get(`post?page=${page}`);
-        setPosts((prevPosts) => [...prevPosts, ...response.data]);
+
+        setPosts((prevPosts) => {
+          const newPosts = response.data.filter(
+            (newPost) =>
+              !prevPosts.some((prevPost) => prevPost.id === newPost.id)
+          );
+
+          return [...prevPosts, ...newPosts];
+        });
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
 
     getPosts();
-  }, [page]); // Only run this effect when 'page' changes
+  }, [page]);
 
   const handleScroll = (event) => {
     const { scrollTop, scrollHeight, clientHeight } = event.target;

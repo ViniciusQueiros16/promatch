@@ -5,7 +5,7 @@ import { SessionContext } from "context/SessionContext";
 import api from "services/api";
 
 const Feed = () => {
-  const user = useContext(SessionContext);
+  const session = useContext(SessionContext);
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -44,7 +44,7 @@ const Feed = () => {
       onScroll={handleScroll}
     >
       <div>
-        <HomePostInput user={user} />
+        <HomePostInput user={session.user} />
       </div>
       <hr />
       <div className="mt-5">

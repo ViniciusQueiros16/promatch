@@ -6,7 +6,7 @@ import { SessionContext } from "context/SessionContext";
 import ButtonLogout from "./Logout";
 
 const ProfileSide = () => {
-  const user = useContext(SessionContext);
+  const session = useContext(SessionContext);
   const [speed, setSpeed] = useState();
   const [showModal, setShowModal] = useState(false);
 
@@ -33,11 +33,11 @@ const ProfileSide = () => {
             />
           </div>
           <Avatar
-            name={user?.username}
+            name={session.user?.username}
             onClick={handleAvatarClick}
             src={
-              user?.avatar
-                ? user?.avatar
+              session.user?.avatar
+                ? session.user?.avatar
                 : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
             }
             className="!absolute !top-9 !h-14 !w-14 !cursor-pointer !border-2"
@@ -45,10 +45,10 @@ const ProfileSide = () => {
           <ButtonLogout showModal={showModal} setShowModal={setShowModal} />
           <div className="mt-5 space-x-0.5 py-4">
             <h4 className="cursor-pointer decoration-purple-700 underline-offset-1 hover:underline">
-              {user?.username}
+              {session.user?.username}
             </h4>
             <p className="text-sm text-dark dark:text-darkmode-light">
-              {user?.email}
+              {session.user?.email}
             </p>
           </div>
           <div className="hidden text-left text-sm text-gray-500 md:inline">

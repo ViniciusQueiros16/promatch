@@ -18,7 +18,7 @@ import { IoSearch } from "react-icons/io5";
 import { SessionContext } from "context/SessionContext";
 
 const HomeHeader = () => {
-  const user = useContext(SessionContext);
+  const session = useContext(SessionContext);
   // distructuring the main menu from menu object
   const { main } = menu;
 
@@ -78,9 +78,9 @@ const HomeHeader = () => {
                             .includes(router.asPath) && "active"
                         } inline-flex items-center`}
                       >
-                        {menu.icon === "Person" && user?.avatar ? (
+                        {menu.icon === "Person" && session.user?.avatar ? (
                           <img
-                            src={user.avatar}
+                            src={session.user.avatar}
                             alt="User Avatar"
                             className=" h-8 w-8 cursor-pointer rounded-full"
                           />

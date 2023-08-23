@@ -8,7 +8,7 @@ import { SessionContext } from "context/SessionContext";
 import CreatePost from "./CreatePost";
 
 const HomePostInput = () => {
-  const user = useContext(SessionContext);
+  const session = useContext(SessionContext);
   const [speed, setSpeed] = useState();
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
 
@@ -28,10 +28,10 @@ const HomePostInput = () => {
     <div className=" space-y-3 rounded-lg border border-gray-300 bg-theme-light p-3 dark:border-none dark:bg-darkmode-body">
       <div className="flex items-center space-x-2">
         <Avatar
-          name={user?.username}
+          name={session.user?.username}
           src={
-            user?.avatar
-              ? user?.avatar
+            session.user?.avatar
+              ? session.user?.avatar
               : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
           }
           className="!h-10 !w-10 cursor-pointer"

@@ -21,9 +21,8 @@ import api from "services/api";
 import { MenuButton } from "@mui/base";
 
 const CreatePost = ({ open, onClose, speed }) => {
-  const user = useContext(SessionContext);
+  const session = useContext(SessionContext);
   const [communityType, setCommunityType] = useState("AnyOne");
-  const [hashtag, setHashtag] = useState("");
   const { selectedFile, setSelectedFile, onSelectedFile } = useSelectFile();
   const [loading, setLoading] = useState(false);
   const [textInput, setTextInput] = useState({ title: "", body: "" });
@@ -33,14 +32,17 @@ const CreatePost = ({ open, onClose, speed }) => {
   };
 
   const handleHashTag = () => {
-    setHashtag("#");
+    setTextInput((prev) => ({
+      ...prev,
+      body: prev.body + "#",
+    }));
   };
 
   const handleCreatePost = async () => {
     setLoading(true);
     try {
       const data = {
-        user_id: user?.user_id,
+        user_id: session.user.user_id,
         message: textInput.body,
         community_type: communityType,
       };
@@ -87,15 +89,15 @@ const CreatePost = ({ open, onClose, speed }) => {
         <Box className="flex-start m-4 flex flex-col gap-2">
           <Box className="flex items-center">
             <Avatar
-              name={user?.name}
+              name={session.user?.name}
               src={
-                user?.avatar
-                  ? user?.avatar
+                session.user?.avatar
+                  ? session.user?.avatar
                   : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
               }
             />
             <Typography className="ml-2 font-bold text-gray-600">
-              {user?.name}
+              {session.user?.name}
             </Typography>
           </Box>
           <Menu closeOnSelect={false}>
@@ -217,7 +219,7 @@ const CreatePost = ({ open, onClose, speed }) => {
           </Box>
           <Box className="buttons flex p-4">
             <Button
-              class="btn btn-outline-primary ml-auto border-primary p-1 px-4  hover:text-blue-700 "
+              className="btn btn-outline-primary ml-auto border-primary p-1 px-4  hover:text-blue-700 "
               onClick={onClose}
             >
               Cancel

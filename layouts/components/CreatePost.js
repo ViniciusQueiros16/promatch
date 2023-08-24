@@ -5,20 +5,18 @@ import {
   Button,
   Checkbox,
   Icon,
-  Menu,
-  MenuList,
   Modal,
+  Popover,
   Stack,
   Typography,
 } from "@mui/material";
-import { BsChevronDown, BsFillPeopleFill } from "react-icons/bs";
-import { MdPublic } from "react-icons/md";
+import { BsChevronDown, BsFillPeopleFill, BsTwitter } from "react-icons/bs";
+import { MdGroupAdd, MdGroups2, MdGroups3, MdPublic } from "react-icons/md";
 import useSelectFile from "@hooks/useSelectFile";
 import ModalFooterIcon from "./ModalFooterIcon";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import { SessionContext } from "context/SessionContext";
 import api from "services/api";
-import { MenuButton } from "@mui/base";
 
 const CreatePost = ({ open, onClose, speed }) => {
   const session = useContext(SessionContext);
@@ -26,9 +24,12 @@ const CreatePost = ({ open, onClose, speed }) => {
   const { selectedFile, setSelectedFile, onSelectedFile } = useSelectFile();
   const [loading, setLoading] = useState(false);
   const [textInput, setTextInput] = useState({ title: "", body: "" });
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const onCommunityTypeChange = (event) => {
-    setCommunityType(event.target.name);
+    const selectedCommunityType = event.target.name;
+    setCommunityType(selectedCommunityType);
+    handleClosePopover();
   };
 
   const handleHashTag = () => {
@@ -74,6 +75,16 @@ const CreatePost = ({ open, onClose, speed }) => {
     }));
   };
 
+  const handleOpenPopover = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClosePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const isPopoverOpen = Boolean(anchorEl);
+
   return (
     <Modal open={open} onClose={onClose} size="lg">
       <Box
@@ -100,8 +111,11 @@ const CreatePost = ({ open, onClose, speed }) => {
               {session.user?.name}
             </Typography>
           </Box>
-          <Menu closeOnSelect={false}>
-            <MenuButton className="-mt-2 rounded-full border border-gray-500 bg-transparent  px-4 py-0.5 text-sm font-bold text-gray-600 hover:bg-gray-200">
+          <div>
+            <Button
+              onClick={handleOpenPopover}
+              className="-mt-2 rounded-full border border-gray-500 bg-transparent px-4 py-0.5 text-sm font-bold text-gray-600 hover:bg-gray-200"
+            >
               {communityType === "AnyOne" ? (
                 <Icon as={MdPublic} className="mr-1 text-lg" />
               ) : (
@@ -115,77 +129,116 @@ const CreatePost = ({ open, onClose, speed }) => {
                 as={BsChevronDown}
                 className="ml-2 animate-bounce text-center text-sm"
               />
-            </MenuButton>
-            <MenuList minWidth="400px">
+            </Button>
+            <Popover
+              open={isPopoverOpen}
+              anchorEl={anchorEl}
+              onClose={handleClosePopover}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+            >
               <Stack spacing={2} className="m-5">
-                <Typography>Who can see your post?</Typography>
+                <Typography className="flex items-center justify-center">
+                  Who can see your post?
+                </Typography>
                 <hr className="my-2 border-t border-gray-700" />
-                <Checkbox
-                  name="AnyOne"
-                  isChecked={communityType === "AnyOne"}
-                  onChange={onCommunityTypeChange}
-                >
-                  <Box align="center" className="flex items-center">
-                    <Icon
-                      as={MdPublic}
-                      className="ml-3 mr-2 bg-gray-500 text-2xl"
-                    />
-                    <Stack gap={0} className="m-2">
-                      <Typography className="text-md font-semibold">
-                        AnyOne
-                      </Typography>
-                      <Typography className="text-xs text-gray-500">
-                        Anyone can view, post and comment to this community
-                      </Typography>
-                    </Stack>
-                  </Box>
-                </Checkbox>
+                <Box display="flex" alignItems="center">
+                  <Icon as={MdPublic} />
+                  <Stack gap={0} className="m-2">
+                    <Typography variant="body1" className="font-semibold">
+                      AnyOne
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Anyone can view, post and comment to this community
+                    </Typography>
+                  </Stack>
+                  <Checkbox
+                    name="AnyOne"
+                    checked={communityType === "AnyOne"}
+                    onChange={onCommunityTypeChange}
+                  ></Checkbox>
+                </Box>
                 <hr className="my-2 border-t border-gray-300" />
-                <Checkbox
-                  name="AnyOne"
-                  isChecked={communityType === "AnyOne"}
-                  onChange={onCommunityTypeChange}
-                >
-                  <Box align="center" className="flex items-center">
-                    <Icon
-                      as={MdPublic}
-                      className="ml-3 mr-2 bg-gray-500 text-2xl"
-                    />
-                    <Stack gap={0} className="m-2">
-                      <Typography className="text-md font-semibold">
-                        AnyOne
-                      </Typography>
-                      <Typography className="text-xs text-gray-500">
-                        Anyone can view, post and comment to this community
-                      </Typography>
-                    </Stack>
-                  </Box>
-                </Checkbox>
+                <Box display="flex" alignItems="center">
+                  <Icon
+                    as={BsTwitter}
+                    color="gray.500"
+                    mr={2}
+                    ml={3}
+                    style={{ fontSize: "30px" }}
+                  />
+                  <Stack gap={0} className="m-2">
+                    <Typography fontSize="12pt" fontWeight={600}>
+                      AnyOne + Twitter
+                    </Typography>
+                    <Typography fontSize="8pt" color="gray.500">
+                      Anyone can view, post and comment to this community
+                    </Typography>
+                  </Stack>
+                  <Checkbox
+                    name="Twitter"
+                    checked={communityType === "Twitter"}
+                    onChange={onCommunityTypeChange}
+                    alignItems="end"
+                  ></Checkbox>
+                </Box>
                 <hr className="my-2 border-t border-gray-300" />
-                <Checkbox
-                  name="AnyOne"
-                  isChecked={communityType === "AnyOne"}
-                  onChange={onCommunityTypeChange}
-                >
-                  <Box align="center" className="flex items-center">
-                    <Icon
-                      as={MdPublic}
-                      className="ml-3 mr-2 bg-gray-500 text-2xl"
-                    />
-                    <Stack gap={0} className="m-2">
-                      <Typography className="text-md font-semibold">
-                        AnyOne
-                      </Typography>
-                      <Typography className="text-xs text-gray-500">
-                        Anyone can view, post and comment to this community
-                      </Typography>
-                    </Stack>
-                  </Box>
-                </Checkbox>
+                <Box display="flex" alignItems="center">
+                  <Icon
+                    as={MdGroupAdd}
+                    color="gray.500"
+                    mr={2}
+                    ml={3}
+                    style={{ fontSize: "30px" }}
+                  />
+                  <Stack gap={0} className="m-2">
+                    <Typography fontSize="12pt" fontWeight={600}>
+                      Connection Only
+                    </Typography>
+                    <Typography fontSize="8pt" color="gray.500">
+                      Anyone can view, post and comment to this community
+                    </Typography>
+                  </Stack>
+                  <Checkbox
+                    name="Connection"
+                    checked={communityType === "Connection"}
+                    onChange={onCommunityTypeChange}
+                  ></Checkbox>
+                </Box>
+                <hr />
+                <Box display="flex" alignItems="center">
+                  <Icon
+                    as={MdGroups3}
+                    color="gray.500"
+                    mr={2}
+                    ml={3}
+                    style={{ fontSize: "30px" }}
+                  />
+                  <Stack gap={0} className="m-2">
+                    <Typography fontSize="12pt" fontWeight={600}>
+                      Group Members
+                    </Typography>
+                    <Typography fontSize="8pt" color="gray.500">
+                      Anyone can view, post and comment to this community
+                    </Typography>
+                  </Stack>
+
+                  <Checkbox
+                    name="Group"
+                    checked={communityType === "Group"}
+                    onChange={onCommunityTypeChange}
+                  ></Checkbox>
+                </Box>
                 <hr />
               </Stack>
-            </MenuList>
-          </Menu>
+            </Popover>
+          </div>
         </Box>
 
         <hr />

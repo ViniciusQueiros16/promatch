@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-import ImageFallback from "./ImageFallback";
+import ImageFallback from "../ImageFallback";
 import Button from "@layouts/shortcodes/Button";
 
 const Suggestions = () => {

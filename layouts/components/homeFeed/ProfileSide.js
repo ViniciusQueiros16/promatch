@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
-import ImageFallback from "./ImageFallback";
+import ImageFallback from "../ImageFallback";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { SessionContext } from "context/SessionContext";
-import ButtonLogout from "./Logout";
+import ButtonLogout from "../Logout";
 
 const ProfileSide = () => {
   const session = useContext(SessionContext);

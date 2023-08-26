@@ -46,7 +46,11 @@ const HomePostInput = () => {
         />
 
         {isCreatePostOpen && (
-          <CreatePost open={isCreatePostOpen} onClose={handleCloseCreatePost} speed={speed} />
+          <CreatePost
+            open={isCreatePostOpen}
+            onClose={handleCloseCreatePost}
+            speed={speed}
+          />
         )}
       </div>
       <div className="flex flex-wrap items-center justify-center gap-4 md:gap-x-10">

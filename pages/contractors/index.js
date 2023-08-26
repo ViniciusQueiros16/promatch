@@ -1,10 +1,10 @@
 import React from "react";
 import { getCookie } from "cookies-next";
 import { SessionContextProvider } from "context/SessionContext";
-import HomeHeader from "@layouts/components/HomeHeader";
-import ProfileSide from "@layouts/components/ProfileSide";
-import Feed from "@layouts/components/Feed";
-import RightHandSide from "@layouts/components/RightHandSide";
+import HomeHeader from "@layouts/components/homeFeed/HomeHeader";
+import ProfileSide from "@layouts/components/homeFeed/ProfileSide";
+import Feed from "@layouts/components/homeFeed/Feed";
+import RightHandSide from "@layouts/components/homeFeed/RightHandSide";
 
 const Contractors = () => {
   return (

@@ -9,7 +9,7 @@ import {
 } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { GrYoutube } from "react-icons/gr";
-import ImageFallback from "./ImageFallback";
+import ImageFallback from "../ImageFallback";
 
 const ModalFooterIcon = ({
   communityType,

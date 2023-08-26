@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { SessionContext } from "context/SessionContext";
+import Logout from "../Logout";
 
 const HomeHeader = () => {
   const session = useContext(SessionContext);
@@ -26,6 +27,7 @@ const HomeHeader = () => {
 
   const [showMenu, setShowMenu] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
+  const [logoutModal, setLogoutModal] = useState(false);
 
   // Router
   const router = useRouter();
@@ -111,14 +113,23 @@ const HomeHeader = () => {
                             className="nav-dropdown-item"
                             key={`children-${i}`}
                           >
-                            <Link
-                              href={child.url}
-                              className={`nav-dropdown-link block ${
-                                router.asPath === child.url && "active"
-                              }`}
-                            >
-                              {child.name}
-                            </Link>
+                            {child.name === "Exit" ? (
+                              <span
+                                className="nav-dropdown-link block cursor-pointer"
+                                onClick={() => setLogoutModal(true)}
+                              >
+                                {child.name}
+                              </span>
+                            ) : (
+                              <Link
+                                href={child.url}
+                                className={`nav-dropdown-link block ${
+                                  router.asPath === child.url && "active"
+                                }`}
+                              >
+                                {child.name}
+                              </Link>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -148,6 +159,9 @@ const HomeHeader = () => {
                 </React.Fragment>
               ))}
             </ul>
+            {logoutModal && (
+              <Logout showModal={logoutModal} setShowModal={setLogoutModal} />
+            )}
           </div>
 
           <div

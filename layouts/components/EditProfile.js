@@ -33,7 +33,8 @@ function EditProfile({ open, onClose }) {
       data.avatar = base64Data;
     }
 
-    const response = await api.put(`profile?token=${token}`, data);
+    const response = await api.put(`users/profile?token=${token}`, data);
+
     console.log(response);
     onClose();
   };

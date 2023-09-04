@@ -34,22 +34,6 @@
     "about": {
       "enable": true,
       "content": "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper."
-    },
-    "featured_posts": {
-      "enable": true,
-      "title": "Blog Categories",
-      "showPost": 3
-    },
-    "categories": {
-      "enable": true,
-      "title": "Blog Categories"
-    },
-    "newsletter": {
-      "enable": true,
-      "title": "Newsletter",
-      "content": "Join thousands of Tiny Salt subscribers and get our best recipes delivered each week!",
-      "privacy_policy_page": "#",
-      "malichipm_url": ""
     }
   },
   "disqus": {

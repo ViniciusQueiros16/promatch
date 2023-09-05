@@ -63,9 +63,84 @@ const Home = ({ banner }) => {
       </section>
 
       {/* Home main */}
-      <section className="section">
+      <section className="bg-gray-100 py-12">
         <div className="container">
-          <div className="row items-start"></div>
+          <div className="row items-center justify-center">
+            <div className="mb-12 lg:col-8 lg:mb-0">
+              {/* Seção 1 */}
+              <section className="flex items-center rounded-lg bg-gray-100 p-8">
+                <div className="lg:order-2 lg:w-1/2">
+                  {/* Sua imagem da seção 1 aqui usando ImageFallback */}
+                  <ImageFallback
+                    className="rounded-lg"
+                    src={banner.image}
+                    alt="Section 1 Image"
+                    width={400}
+                    height={300}
+                    priority={true}
+                  />
+                </div>
+                <div className="lg:order-1 lg:w-1/2">
+                  <h2 className="mb-4 text-2xl font-semibold">
+                    About ProMatch
+                  </h2>
+                  <p className="text-gray-700">
+                    ProMatch is the perfect solution to connect contractors to a
+                    service simply and efficiently. Whether you're a company
+                    looking for talent or a freelancer looking for
+                    opportunities, ProMatch is here to help.
+                  </p>
+                </div>
+              </section>
+
+              {/* Seção 2 */}
+              <section className="flex items-center rounded-lg bg-gray-100 p-8">
+                <div className="lg:w-1/2">
+                  {/* Sua imagem da seção 2 aqui usando ImageFallback */}
+                  <ImageFallback
+                    className="rounded-lg"
+                    src={banner.image}
+                    alt="Section 2 Image"
+                    width={400}
+                    height={300}
+                    priority={true}
+                  />
+                </div>
+                <div className="lg:w-1/2">
+                  <h2 className="mb-4 text-2xl font-semibold">Main Features</h2>
+                  <ul className="list-inside list-disc text-gray-700">
+                    <li>Simplified search for professionals and services</li>
+                    <li>Smart matching algorithm</li>
+                    <li>Private chat for negotiations</li>
+                    <li>Video call option</li>
+                    <li>Jobs and services feed</li>
+                  </ul>
+                </div>
+              </section>
+
+              {/* Seção 3 */}
+              <section className="flex items-center rounded-lg bg-gray-100 p-8">
+                <div className="lg:order-2 lg:w-1/2">
+                  {/* Sua imagem da seção 3 aqui usando ImageFallback */}
+                  <ImageFallback
+                    className="rounded-lg"
+                    src={banner.image}
+                    alt="Section 3 Image"
+                    width={400}
+                    height={300}
+                    priority={true}
+                  />
+                </div>
+                <div className="lg:order-1 lg:w-1/2">
+                  <h2 className="mb-4 text-2xl font-semibold">Start now</h2>
+                  <p className="text-gray-700">
+                    Find the ideal business partner or opportunities for
+                    exciting work. Join ProMatch today!
+                  </p>
+                </div>
+              </section>
+            </div>
+          </div>
         </div>
       </section>
     </Base>

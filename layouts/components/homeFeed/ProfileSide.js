@@ -3,19 +3,19 @@ import { Avatar } from "@mui/material";
 import ImageFallback from "../ImageFallback";
 import { BsFillBookmarkStarFill } from "react-icons/bs";
 import { SessionContext } from "context/SessionContext";
-import ButtonLogout from "../Logout";
+import EditProfile from "../EditProfile";
 
 const ProfileSide = () => {
   const session = useContext(SessionContext);
   const [speed, setSpeed] = useState();
-  const [showModal, setShowModal] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 
   useEffect(() => {
     setSpeed(Math.floor(Math.random() * 5000));
   }, []);
 
   const handleAvatarClick = () => {
-    setShowModal(true);
+    setIsEditProfileOpen(true);
   };
 
   return (
@@ -42,7 +42,11 @@ const ProfileSide = () => {
             }
             className="!absolute !top-9 !h-14 !w-14 !cursor-pointer !border-2"
           />
-          <ButtonLogout showModal={showModal} setShowModal={setShowModal} />
+          <EditProfile
+            open={isEditProfileOpen}
+            onClose={() => setIsEditProfileOpen(false)}
+            isDisabled={true}
+          />
           <div className="mt-5 space-x-0.5 py-4">
             <h4 className="cursor-pointer decoration-purple-700 underline-offset-1 hover:underline">
               {session.user?.username}

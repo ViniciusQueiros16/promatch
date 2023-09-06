@@ -1,4 +1,5 @@
 import useSelectFile from "@hooks/useSelectFile";
+import dateFormat from "@lib/utils/dateFormat";
 import {
   Modal,
   TextField,
@@ -10,16 +11,23 @@ import {
 } from "@mui/material";
 import { SessionContext } from "context/SessionContext";
 import { getCookie } from "cookies-next";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "services/api";
 
-function EditProfile({ open, onClose }) {
+function EditProfile({ open, onClose, isDisabled }) {
   const session = useContext(SessionContext);
-  const [birthdate, setBirthdate] = React.useState("");
-  const [company, setCompany] = React.useState("");
-  const [gender, setGender] = React.useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [company, setCompany] = useState("");
+  const [gender, setGender] = useState("");
   const { selectedFile, setSelectedFile, onSelectedFile } = useSelectFile();
 
+  useEffect(() => {
+    if (session.user) {
+      setBirthdate(dateFormat(new Date(session.user.birthdate)) || "");
+      setCompany(session.user.company || "");
+      setGender(session.user.gender || "");
+    }
+  }, [session.user]);
   const handleSave = async () => {
     const token = getCookie("authorization");
     const data = {
@@ -43,7 +51,9 @@ function EditProfile({ open, onClose }) {
     <div>
       <Modal open={open} onClose={onClose}>
         <div className="shadow-24 absolute left-1/2 top-1/3 w-3/4 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-white p-4 dark:bg-darkmode-body md:w-2/4 lg:w-1/4">
-          <h2 className="mb-4 text-xl">Edit Profile</h2>
+          <h2 className="mb-4 text-xl">
+            {isDisabled ? "Profile" : "Edit Profile"}
+          </h2>
           <form>
             <div className="mb-4">
               {session.user?.avatar && (
@@ -59,10 +69,13 @@ function EditProfile({ open, onClose }) {
                 onChange={onSelectedFile}
                 className="hidden"
                 id="avatar-upload-input"
+                disabled={isDisabled}
               />
               <label
                 htmlFor="avatar-upload-input"
-                className="hover:bg-primary-dark cursor-pointer rounded-full bg-primary px-4 py-2 text-white transition duration-300"
+                className={`hover:bg-primary-dark cursor-pointer rounded-full bg-primary px-4 py-2 text-white transition duration-300 ${
+                  isDisabled ? "opacity-50" : ""
+                }`}
               >
                 {session.user?.avatar ? "Change Avatar" : "Upload Avatar"}
               </label>
@@ -88,12 +101,14 @@ function EditProfile({ open, onClose }) {
               disabled
               margin="normal"
             />
+
             <TextField
               label="Birthdate"
               fullWidth
               value={birthdate}
               onChange={(e) => setBirthdate(e.target.value)}
               margin="normal"
+              disabled={isDisabled}
             />
             <TextField
               label="Company"
@@ -101,25 +116,38 @@ function EditProfile({ open, onClose }) {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               margin="normal"
+              disabled={isDisabled}
             />
+
             <FormControl fullWidth margin="normal">
               <InputLabel>Gender</InputLabel>
               <Select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
+                disabled={isDisabled}
               >
                 <MenuItem value="male">Male</MenuItem>
                 <MenuItem value="female">Female</MenuItem>
                 <MenuItem value="other">Other</MenuItem>
               </Select>
             </FormControl>
-            <Button
-              variant="contained"
-              className=" btn-primary"
-              onClick={handleSave}
-            >
-              Save
-            </Button>
+            <div className="flex justify-between p-2">
+              <Button
+                variant="contained"
+                className="btn btn-outline-primary "
+                onClick={onClose}
+              >
+                Close
+              </Button>
+              <Button
+                variant="contained"
+                className={`btn-primary ${isDisabled ? "opacity-50" : ""}`}
+                onClick={handleSave}
+                disabled={isDisabled}
+              >
+                Save
+              </Button>
+            </div>
           </form>
         </div>
       </Modal>

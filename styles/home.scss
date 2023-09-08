@@ -8,9 +8,9 @@
     @apply text-center inline-block align-top text-5xl font-bold ;
 }
 
-.tabs-about {
-    @apply inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300
-}
+.custom-tabs-about {
+    @apply p-4 block;
+  }
   
 
   

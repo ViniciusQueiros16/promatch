@@ -1,5 +1,5 @@
 import NotFound from "@layouts/404";
-import About from "@layouts/About";
+import About from "@layouts/components/About";
 import Base from "@layouts/Baseof";
 import Contact from "@layouts/Contact";
 import Default from "@layouts/Default";

@@ -33,7 +33,7 @@ function About() {
   return (
     <ScrollAnimationWrapper>
       <motion.div
-        className="mx-auto max-w-7xl p-10 md:px-12 xl:px-6"
+        className="mx-auto max-w-7xl  md:px-12 xl:px-6"
         variants={scrollAnimation}
       >
         <div className="mb-8 flex flex-col justify-center px-6 py-6 md:px-0 ">

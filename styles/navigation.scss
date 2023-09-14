@@ -3,7 +3,7 @@ body.menu-open {
 }
 
 .header {
-  @apply sticky top-0 z-50 flex items-center p-2 lg:px-5 shadow-md bg-body  dark:shadow-black dark:bg-darkmode-body;
+  @apply  top-0 z-50 flex items-center p-2 lg:px-5  bg-transparent  dark:shadow-black dark:bg-darkmode-body;
 }
 
 // navbar items

@@ -8,7 +8,6 @@ function Banner() {
   const [showProMatch, setShowProMatch] = useState(false);
 
   useEffect(() => {
-    
     setTimeout(() => {
       setShowWelcome(true);
     }, 1000);
@@ -46,14 +45,14 @@ function Banner() {
               </h1>
             )}
             {showProMatch && (
-              <h1 className="bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 bg-clip-text text-8xl font-bold text-transparent">
-                ProMatch
-                <span className="text-green-700">!</span>
-              </h1>
+              <div className="flex items-center justify-center ">
+                  <h1 className="bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 bg-clip-text text-8xl font-bold text-transparent">ProMatch</h1>
+                <h1 className="animate-bounce bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 bg-clip-text text-8xl font-bold text-transparent">!</h1>
+              </div>
             )}
           </div>
 
-          <p className="mt-2 text-xl dark:text-gray-300 font-bold font-sans">
+          <p className="mt-2 font-sans text-xl font-bold dark:text-gray-300">
             We bridge the gap between contractors and service providers,
             simplifying the hiring process for businesses and freelancers. Say
             goodbye to complex job applications and hello to easy matching.

@@ -1,0 +1,16 @@
+
+
+.about-us {
+   @apply text-center text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-green-600;
+  }
+
+.company-details {
+    @apply text-center inline-block align-top text-5xl font-bold ;
+}
+
+.custom-tabs-about {
+    @apply p-4 block;
+  }
+  
+
+  

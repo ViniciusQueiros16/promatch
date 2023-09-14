@@ -9,7 +9,7 @@
       "url": "/about"
     },
     {
-      "name": "Elements",
+      "name": "Resources",
       "url": "/elements"
     },
     {
@@ -22,8 +22,8 @@
       "hasChildren": true,
       "children": [
         {
-          "name": "Categories",
-          "url": "/categories"
+          "name": "Services",
+          "url": "/services"
         }
       ]
     }

@@ -50,8 +50,8 @@ function EditProfile({ open, onClose, isDisabled }) {
   return (
     <div>
       <Modal open={open} onClose={onClose}>
-        <div className="shadow-24 absolute left-1/2 top-1/3 w-3/4 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-white p-4 dark:bg-darkmode-body md:w-2/4 lg:w-1/4">
-          <h2 className="mb-4 text-xl">
+        <div className="shadow-24 absolute left-1/2 top-1/3 w-3/4 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-white p-4 dark:bg-darkmode-theme-light md:w-2/4 lg:w-1/4">
+          <h2 className="mb-4 text-xl dark:text-gray-700">
             {isDisabled ? "Profile" : "Edit Profile"}
           </h2>
           <form>

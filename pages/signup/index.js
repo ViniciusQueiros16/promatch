@@ -27,7 +27,10 @@ const Signup = () => {
 
       setCookie("authorization", json.token);
 
-      router.push("/contractors");
+      router.push({
+        pathname: "/profile",
+        query: { editProfile: true },
+      });
     } catch (error) {
       setError(error.message + " Unable to register. Try again!");
     }

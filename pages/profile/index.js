@@ -4,6 +4,7 @@ import ImageFallback from "@layouts/components/ImageFallback";
 import RightHandSide from "@layouts/components/homeFeed/RightHandSide";
 import { Avatar, Icon } from "@mui/material";
 import { SessionContext } from "context/SessionContext";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import {
   BsArrowRight,
@@ -16,9 +17,15 @@ import { FaSatelliteDish } from "react-icons/fa";
 
 function ShowProfile() {
   const session = useContext(SessionContext);
-
+  const { query } = useRouter();
   const [speed, setSpeed] = useState();
-  const [profileModal, setEditProfileModal] = useState(false);
+  const [profileModal, setEditProfileModal] = useState(
+    query.editProfile === "true"
+  );
+
+  useEffect(() => {
+    setEditProfileModal(query.editProfile === "true");
+  }, [query.editProfile]);
 
   useEffect(() => {
     setSpeed(Math.floor(Math.random() * 5000));

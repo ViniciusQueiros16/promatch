@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 function About() {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-  const [activeTab, setActiveTab] = useState("aboutUs"); // Defina a tab inicial
+  const [activeTab, setActiveTab] = useState("aboutUs"); 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -54,7 +54,7 @@ function About() {
 
         {/* Tabs */}
 
-        <ul class="flex border-b border-gray-200 bg-transparent text-center text-lg font-bold text-gray-500 dark:text-gray-400">
+        <ul className="flex border-b border-gray-200 bg-transparent text-center text-lg font-bold text-gray-500 dark:text-gray-400">
           <li className="w-full flex-1">
             <a
               className={`tabs-about block border-b-2 p-2 hover:border-blue-600 hover:text-blue-500  ${

@@ -2,7 +2,7 @@ import ScrollAnimationWrapper from "@layouts/ScrollAnimationWrapper";
 import getScrollAnimation from "@lib/utils/getScrollAnimation";
 import { motion } from "framer-motion";
 import React, { useMemo } from "react";
-import ImageFallback from "./ImageFallback";
+import ImageFallback from "../ImageFallback";
 
 function Testimonials() {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);

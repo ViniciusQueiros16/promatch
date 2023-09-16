@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ImageFallback from "./ImageFallback";
+import ImageFallback from "../ImageFallback";
 import Link from "next/link";
 
 function Banner() {

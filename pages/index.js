@@ -1,9 +1,9 @@
-import About from "@layouts/components/About";
+import About from "@layouts/components/home/About";
 import Base from "@layouts/Baseof";
-import Resources from "@layouts/components/Resources";
-import Stats from "@layouts/components/Stats";
-import Testimonials from "@layouts/components/Testimonials";
-import Banner from "@layouts/components/Banner";
+import Resources from "@layouts/components/home/Resources";
+import Stats from "@layouts/components/home/Stats";
+import Testimonials from "@layouts/components/home/Testimonials";
+import Banner from "@layouts/components/home/Banner";
 
 const Home = () => {
   return (

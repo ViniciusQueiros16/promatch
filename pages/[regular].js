@@ -1,9 +1,12 @@
 import NotFound from "@layouts/404";
-import About from "@layouts/components/About";
+import About from "@layouts/components/home/About";
 import Base from "@layouts/Baseof";
 import Contact from "@layouts/Contact";
 import Default from "@layouts/Default";
 import { getRegularPage, getSinglePage } from "@lib/contentParser";
+import Resources from "@layouts/components/home/Resources";
+import Stats from "@layouts/components/home/Stats";
+import Testimonials from "@layouts/components/home/Testimonials";
 
 // for all regular pages
 const RegularPages = ({ data }) => {
@@ -24,8 +27,14 @@ const RegularPages = ({ data }) => {
         <NotFound data={data} />
       ) : layout === "about" ? (
         <About data={data} />
+      ) : layout === "resources" ? (
+        <Resources data={data} />
       ) : layout === "contact" ? (
         <Contact data={data} />
+      ) : layout === "stats" ? (
+        <Stats data={data} />
+      ): layout === "testimonials" ? (
+        <Testimonials data={data} />
       ) : (
         <Default data={data} />
       )}

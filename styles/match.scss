@@ -1,0 +1,28 @@
+.dashboard {
+    @apply flex justify-between;
+  }
+
+.swipe-container {
+    @apply w-4/5 flex flex-col justify-center items-center h-screen;
+  }
+  
+.swipe {
+    @apply absolute;
+  }
+  
+.card-container {
+    @apply w-[28rem] max-w-lg  md:w-auto h-[42rem];
+  }
+  
+  .card {
+    @apply w-[28rem] h-[42rem]   rounded-md bg-cover bg-center;
+  }
+  
+  .card h3 {
+    @apply mt-0;
+  }
+  
+.swipe-info {
+    @apply absolute bottom-0 p-10;
+  }
+  

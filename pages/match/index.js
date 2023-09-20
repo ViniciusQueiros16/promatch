@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
-
+import React, { useState } from "react";
 import ContractorsLayoutBase from "@layouts/ContractorsLayoutBase";
+import dynamic from "next/dynamic";
 
 const characters = [
   {
@@ -25,17 +25,12 @@ const characters = [
   },
 ];
 
-let TinderCard;
-
 const Match = () => {
   const [lastDirection, setLastDirection] = useState();
 
-  useEffect(() => {
-    // Dynamically import react-tinder-card when component mounts
-    import("react-tinder-card").then((module) => {
-      TinderCard = module.default;
-    });
-  }, []);
+  const SwipeCard = dynamic(() => import("react-tinder-card"), {
+    ssr: false,
+  });
 
   const swiped = (direction, nameToDelete) => {
     console.log("removing: " + nameToDelete);
@@ -52,9 +47,9 @@ const Match = () => {
         {/* <ChatContainer user={user} /> */}
         <div className="swipe-container">
           <div className="card-container">
-            {TinderCard &&
+            {SwipeCard &&
               characters.map((character) => (
-                <TinderCard
+                <SwipeCard
                   className="swipe"
                   key={character.name}
                   onSwipe={(dir) => swiped(dir, character.name)}
@@ -64,9 +59,9 @@ const Match = () => {
                     style={{ backgroundImage: `url(${character.url})` }}
                     className="card"
                   >
-                    <h3>{character.name}</h3>
+                    {/* <h3>{character.name}</h3> */}
                   </div>
-                </TinderCard>
+                </SwipeCard>
               ))}
             <div className="swipe-info">
               {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}

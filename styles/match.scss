@@ -1,28 +1,38 @@
 .dashboard {
-    @apply flex justify-between;
-  }
+  @apply flex justify-center h-screen;
+
+}
 
 .swipe-container {
-    @apply w-4/5 flex flex-col justify-center items-center h-screen;
+    @apply flex flex-col items-center  m-auto;
   }
-  
+
 .swipe {
-    @apply absolute;
-  }
-  
+  @apply absolute;
+}
+
 .card-container {
-    @apply w-[28rem] max-w-lg  md:w-auto h-[42rem];
-  }
-  
-  .card {
-    @apply w-[28rem] h-[42rem]   rounded-md bg-cover bg-center;
-  }
-  
-  .card h3 {
-    @apply mt-0;
-  }
-  
+  @apply flex flex-col justify-center items-center max-w-lg md:w-auto h-[42rem];
+}
+
+.card {
+  @apply w-[28rem] h-[42rem] rounded-3xl bg-cover bg-center;
+}
+
+.card h3 {
+  @apply mt-0;
+}
+
 .swipe-info {
-    @apply absolute bottom-0 p-10;
-  }
-  
+  @apply absolute ;
+}
+
+.button-container {
+  @apply flex justify-center flex-row items-center mt-6 gap-x-2;
+}
+
+/*-------- Advertise Container --------*/
+.advertise-container {
+  @apply bg-white w-1/4 text-left h-screen rounded-lg;
+ 
+}

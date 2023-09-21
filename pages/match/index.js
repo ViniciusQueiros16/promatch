@@ -1,6 +1,7 @@
 import React from "react";
 import ContractorsLayoutBase from "@layouts/ContractorsLayoutBase";
-import SwipeCards from "@layouts/components/SwipeCards";
+import SwipeCards from "@layouts/components/match/SwipeCards";
+import Advertise from "@layouts/components/match/Advertise";
 
 const db = [
   {
@@ -29,7 +30,10 @@ const Match = () => {
   return (
     <>
       <ContractorsLayoutBase>
-        <SwipeCards characters={db}></SwipeCards>
+        <div className="dashboard">
+          <Advertise></Advertise>
+          <SwipeCards characters={db}></SwipeCards>
+        </div>
       </ContractorsLayoutBase>
     </>
   );

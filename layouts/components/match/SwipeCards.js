@@ -63,54 +63,51 @@ const SwipeCards = ({ characters }) => {
   };
   return (
     <>
-      <div className="dashboard">
-        <div className="swipe-container">
-          <div className="card-container">
-            {TinderCard &&
-              characters.map((character, index) => (
-                <TinderCard
-                  ref={childRefs[index]}
-                  className="swipe"
-                  key={character.name}
-                  onSwipe={(dir) => swiped(dir, character.name, index)}
-                  onCardLeftScreen={() => outOfFrame(character.name, index)}
+      <div className="swipe-container">
+        <div className="card-container">
+          {TinderCard &&
+            characters.map((character, index) => (
+              <TinderCard
+                ref={childRefs[index]}
+                className="swipe"
+                key={character.name}
+                onSwipe={(dir) => swiped(dir, character.name, index)}
+                onCardLeftScreen={() => outOfFrame(character.name, index)}
+              >
+                <div
+                  style={{ backgroundImage: `url(${character.url})` }}
+                  className="card"
                 >
-                  <div
-                    style={{ backgroundImage: `url(${character.url})` }}
-                    className="card"
-                  >
-                    <h3>{character.name}</h3>
-                  </div>
-                </TinderCard>
-              ))}
-
-            <div className="swipe-info">
-              {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
-            </div>
-          </div>
-          <div className="buttons">
-            <Button
-              style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-              onClick={() => swipe("left")}
-              disabled={!isCardLoaded} // Disable the button if SwipeCard is not loaded
-            >
-              Swipe left!
-            </Button>
-            <Button
-              style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
-              onClick={() => goBack()}
-              disabled={!isCardLoaded} // Disable the button if SwipeCard is not loaded
-            >
-              Undo swipe!
-            </Button>
-            <Button
-              style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-              onClick={() => swipe("right")}
-              disabled={!isCardLoaded} // Disable the button if SwipeCard is not loaded
-            >
-              Swipe right!
-            </Button>
-          </div>
+                  <h3>{character.name}</h3>
+                </div>
+              </TinderCard>
+            ))}
+        </div>
+        <div className="swipe-info">
+          {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
+        </div>
+        <div className="button-container">
+          <Button
+            className="btn btn-primary"
+            onClick={() => swipe("left")}
+            disabled={!isCardLoaded}
+          >
+            Swipe left!
+          </Button>
+          <Button
+            className="btn btn-primary"
+            onClick={() => goBack()}
+            disabled={!isCardLoaded}
+          >
+            Undo swipe!
+          </Button>
+          <Button
+            className="btn btn-primary"
+            onClick={() => swipe("right")}
+            disabled={!isCardLoaded}
+          >
+            Swipe right!
+          </Button>
         </div>
       </div>
     </>

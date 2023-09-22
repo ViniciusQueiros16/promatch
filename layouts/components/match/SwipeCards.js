@@ -74,18 +74,25 @@ const SwipeCards = ({ characters }) => {
                 onSwipe={(dir) => swiped(dir, character.name, index)}
                 onCardLeftScreen={() => outOfFrame(character.name, index)}
               >
-                <div
-                  style={{ backgroundImage: `url(${character.url})` }}
-                  className="card"
-                >
-                  <h3>{character.name}</h3>
+                <div className="card">
+                  <div
+                    className="card-image"
+                    style={{
+                      backgroundImage: `url(${character.url})`,
+                    }}
+                  ></div>
+                  <div className="card-content">
+                    <h3 className="card-title">{character.name}</h3>
+                    <p className="card-subtitle">{character.type_service}</p>
+                    <p className="card-description">{character.description}</p>
+                  </div>
                 </div>
               </TinderCard>
             ))}
         </div>
-        <div className="swipe-info">
+        {/* <div className="swipe-info">
           {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
-        </div>
+        </div> */}
         <div className="button-container">
           <Button
             className="btn btn-primary"

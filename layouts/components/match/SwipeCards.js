@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@mui/material";
+import ReadMore from "../ReadMore";
+
 
 const SwipeCards = ({ characters }) => {
   const [TinderCard, setTinderCard] = useState(null);
@@ -84,7 +86,7 @@ const SwipeCards = ({ characters }) => {
                   <div className="card-content">
                     <h3 className="card-title">{character.name}</h3>
                     <p className="card-subtitle">{character.type_service}</p>
-                    <p className="card-description">{character.description}</p>
+                    <ReadMore>{character.description}</ReadMore>
                   </div>
                 </div>
               </TinderCard>

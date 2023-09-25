@@ -47,3 +47,25 @@
 .advertise-container {
   @apply bg-white w-1/4 text-left h-screen rounded-lg;
 }
+
+.container-header {
+  @apply flex h-24 items-center justify-between  m-auto bg-gradient-to-tr from-yellow-700 to-yellow-200;
+  
+}
+
+.profile {
+  @apply flex items-center p-5;
+}
+
+.img-container {
+  @apply h-8 w-8 rounded-2xl overflow-hidden m-10;
+}
+
+.img-container img {
+  @apply w-full;
+}
+
+.advertise-tabs {
+  @apply flex items-center;
+}
+

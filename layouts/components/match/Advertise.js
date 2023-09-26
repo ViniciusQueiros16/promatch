@@ -2,7 +2,7 @@ import Tabs from "@layouts/shortcodes/Tabs";
 import { Avatar, Icon, TextareaAutosize } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { SessionContext } from "context/SessionContext";
-import { MdArrowBack } from "react-icons/md";
+import { ReplyOutlined } from "@mui/icons-material";
 
 const Advertise = () => {
   const session = useContext(SessionContext);
@@ -23,15 +23,14 @@ const Advertise = () => {
                   ? session.user?.avatar
                   : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
               }
-              // className="absolute left-8 h-32 w-32"
             />
           </div>
-          <h3>{session.user?.username}</h3>
+          <h4>{session.user?.username}</h4>
         </div>
         <Icon
-          as={MdArrowBack}
+          as={ReplyOutlined}
           cursor="pointer"
-          className="ml-2 mt-2 text-gray-500"
+          className="m-4 text-green-500"
         />
       </div>
 
@@ -41,7 +40,7 @@ const Advertise = () => {
             <label htmlFor="searchType">
               Are you looking for clients or professionals?
             </label>
-            <select id="searchType">
+            <select className="rounded dark:text-gray-500" id="searchType">
               <option value="clients">Clients</option>
               <option value="professionals">Professionals</option>
             </select>
@@ -54,6 +53,7 @@ const Advertise = () => {
               type="text"
               id="serviceType"
               placeholder="Enter service type"
+              className="rounded"
             />
           </div>
           <div name="Description">
@@ -63,10 +63,16 @@ const Advertise = () => {
               minRows={3}
               placeholder="Enter description"
               style={{ width: "100%" }}
+              className="rounded"
             />
 
             <label htmlFor="keywords">Add Keywords: </label>
-            <input type="text" id="keywords" placeholder="Enter keywords" />
+            <input
+              className="rounded"
+              type="text"
+              id="keywords"
+              placeholder="Enter keywords"
+            />
           </div>
         </Tabs>
       </div>

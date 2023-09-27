@@ -13,12 +13,13 @@ const Advertise = () => {
   return (
     <div>
       <div className={`${isContainerCollapsed ? "collapsed" : ""}`}>
+        
         <AdvertiseHeader
           onCollapseToggle={handleToggleCollapse}
           isCollapsed={isContainerCollapsed}
         />
 
-        <div className="advertise-tabs">
+        <div className="advertise-tabs-container">
           <Tabs>
             <div name="Find">
               <label htmlFor="searchType">

@@ -1,9 +1,13 @@
 .dashboard {
-  @apply flex justify-center h-screen;
+  @apply flex flex-col items-center min-h-screen;
+
+  @screen md {
+    @apply flex-row;
+  }
 }
 
 .swipe-container {
-  @apply flex flex-col items-center m-auto;
+  @apply flex flex-col items-center m-auto pt-10 h-screen;
 }
 
 .swipe {
@@ -11,9 +15,12 @@
 }
 
 .card-container {
-  @apply flex flex-col justify-center items-center max-w-lg md:w-auto h-[42rem];
-}
+  @apply flex flex-col justify-center items-center max-w-lg md:w-auto h-[42rem]; 
 
+  @screen md {
+    @apply h-[42rem];
+  }
+}
 .card {
   @apply w-[28rem]  h-[38rem] bg-theme-light dark:bg-darkmode-body rounded-2xl flex flex-col ;
 }
@@ -44,12 +51,12 @@
 }
 
 /*-------- Advertise Container --------*/
-.advertise-container {
-  @apply bg-white w-1/4 text-left h-screen rounded-lg dark:bg-darkmode-theme-dark;
+.advertise-tabs-container {
+  @apply bg-white text-left h-screen max-h-min rounded-b-2xl  max-w-md dark:bg-darkmode-theme-dark;
 }
 
 .container-header {
-  @apply flex h-24 items-center justify-between  m-auto bg-gradient-to-tr from-yellow-700 to-yellow-200;
+  @apply flex h-24 items-center justify-between rounded-tr-2xl  m-auto bg-gradient-to-tr from-yellow-700 to-yellow-200;
   
 }
 
@@ -63,4 +70,8 @@
 
 .collapsed {
   display: none;
+}
+
+.collapsed-content {
+   @apply bg-white  w-auto h-screen max-h-min rounded-b-2xl dark:bg-darkmode-theme-dark
 }

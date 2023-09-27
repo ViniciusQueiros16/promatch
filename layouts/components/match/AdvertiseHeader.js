@@ -13,18 +13,20 @@ function AdvertiseHeader({ onCollapseToggle, isCollapsed }) {
 
   return (
     <div className="container-header">
-      <div className="profile">
-        <div className="img-container">
-          <Avatar
-            src={
-              session.user?.avatar
-                ? session.user?.avatar
-                : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
-            }
-          />
+      {!isCollapsed && (
+        <div className="profile">
+          <div className="img-container">
+            <Avatar
+              src={
+                session.user?.avatar
+                  ? session.user?.avatar
+                  : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
+              }
+            />
+          </div>
+          <h4>{session.user?.username}</h4>
         </div>
-        <h4>{session.user?.username}</h4>
-      </div>
+      )}
 
       <Icon
         as={isCollapsed ? IoArrowRedoSharp : IoArrowUndoSharp}

@@ -61,8 +61,6 @@
   @apply  m-4;
 }
 
-
-.advertise-tabs {
-  @apply flex items-center ;
+.collapsed {
+  display: none;
 }
-

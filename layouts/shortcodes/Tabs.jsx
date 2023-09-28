@@ -37,13 +37,18 @@ function Tabs({ children }) {
           </li>
         ))}
       </ul>
-      <ul className="m-4 list-none rounded bg-theme-light p-6 dark:bg-gray-400" ref={tabItemsRef}>
+      <ul className="m-4 list-none rounded bg-transparent border p-6 " ref={tabItemsRef}>
         {children[currentTab]}
       </ul>
 
       <div className="flex justify-between m-4">
         <Button className="btn btn-primary" onClick={handlePrevTab} disabled={currentTab === 0}>Anterior</Button>
-        <Button className="btn btn-primary" onClick={handleNextTab} disabled={currentTab === children.length - 1}>Próximo</Button>
+        {currentTab === children.length - 1 ? (
+          <Button className="btn btn-primary" onClick={handleNextTab} >Send</Button>
+        ):(
+          <Button className="btn btn-primary" onClick={handleNextTab} >Próximo</Button>
+        )}
+        
       </div>
     </div>
   );

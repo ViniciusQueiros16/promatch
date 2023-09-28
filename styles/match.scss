@@ -50,6 +50,14 @@
   @apply flex justify-center flex-row items-center gap-x-2;
 }
 
+.header-card {
+  @apply   items-center;
+}
+
+.swipe-icons-container {
+  @apply flex flex-row gap-x-2; 
+}
+
 /*-------- Advertise Container --------*/
 .advertise-tabs-container {
   @apply bg-white text-left h-screen max-h-min rounded-b-2xl  max-w-md dark:bg-darkmode-theme-dark;

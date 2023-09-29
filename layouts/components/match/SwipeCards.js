@@ -100,29 +100,31 @@ const SwipeCards = ({ characters }) => {
         {/* <div className="swipe-info">
           {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
         </div> */}
-        <div className="button-container">
-          <Button
-            className="btn btn-primary"
-            onClick={() => swipe("left")}
-            disabled={!isCardLoaded}
-          >
-            Swipe left!
-          </Button>
-          <Button
-            className="btn btn-primary"
-            onClick={() => goBack()}
-            disabled={!isCardLoaded}
-          >
-            Undo swipe!
-          </Button>
-          <Button
-            className="btn btn-primary"
-            onClick={() => swipe("right")}
-            disabled={!isCardLoaded}
-          >
-            Swipe right!
-          </Button>
-        </div>
+        {characters.length > 0 && (
+          <div className="button-container">
+            <Button
+              className="btn btn-primary"
+              onClick={() => swipe("left")}
+              disabled={!isCardLoaded}
+            >
+              Swipe left!
+            </Button>
+            <Button
+              className="btn btn-primary"
+              onClick={() => goBack()}
+              disabled={!isCardLoaded}
+            >
+              Undo swipe!
+            </Button>
+            <Button
+              className="btn btn-primary"
+              onClick={() => swipe("right")}
+              disabled={!isCardLoaded}
+            >
+              Swipe right!
+            </Button>
+          </div>
+        )}
       </div>
     </>
   );

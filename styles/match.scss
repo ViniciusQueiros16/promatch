@@ -7,7 +7,7 @@
 }
 
 .swipe-container {
-  @apply flex flex-col items-center m-auto pt-10 h-screen;
+  @apply flex flex-col items-center m-auto pt-10 h-screen bg-[url('/images/map-conections.png')] bg-[center_top_10rem]  bg-[length:480px] bg-no-repeat;
 }
 
 .swipe {

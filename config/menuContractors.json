@@ -11,13 +11,13 @@
       "icon": "AccountTree"
     },
     {
-      "name": "Advertise & Match",
+      "name": "Job Matching",
       "url": "/match",
       "icon": "Work"
     },
     {
-      "name": "Messaging",
-      "url": "/messaging",
+      "name": "Matchs & Chat",
+      "url": "/chat",
       "icon": "Chat"
     },
     {

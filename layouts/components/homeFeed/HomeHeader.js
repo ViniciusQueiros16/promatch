@@ -10,6 +10,7 @@ import {
   Chat,
   Notifications,
   Person,
+  Handshake,
 } from "@mui/icons-material";
 
 import { useRouter } from "next/router";
@@ -95,6 +96,7 @@ const HomeHeader = () => {
                               Chat,
                               Notifications,
                               Person,
+                              Handshake,
                             }[menu.icon]
                           )
                         )}
@@ -150,6 +152,7 @@ const HomeHeader = () => {
                             Chat,
                             Notifications,
                             Person,
+                            Handshake,
                           }[menu.icon]
                         )}
                         <span className="pl-2">{menu.name}</span>

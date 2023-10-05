@@ -39,7 +39,7 @@ const db = [
   },
 ];
 
-const Match = () => {
+const ProSearch = () => {
   return (
     <>
       <ContractorsLayoutBase>
@@ -51,4 +51,4 @@ const Match = () => {
     </>
   );
 };
-export default Match;
+export default ProSearch;

@@ -11,12 +11,17 @@
       "icon": "AccountTree"
     },
     {
-      "name": "Job Matching",
-      "url": "/match",
+      "name": "ProSearch", 
+      "url": "/prosearch",
       "icon": "Work"
     },
     {
-      "name": "Matchs & Chat",
+      "name": "JobMatch",
+      "url": "/jobmatch",
+      "icon": "Handshake"
+    },
+    {
+      "name": "Chat",
       "url": "/chat",
       "icon": "Chat"
     },

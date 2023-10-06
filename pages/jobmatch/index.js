@@ -1,10 +1,69 @@
 import React, { useContext, useEffect, useState } from "react";
 import RightHandSide from "@layouts/components/homeFeed/RightHandSide";
-import MatchesDisplay from "@layouts/components/MatchesDisplay";
-import ChatDisplay from "@layouts/components/ChatDisplay";
 import ContractorsLayoutBase from "@layouts/ContractorsLayoutBase";
 import { Avatar } from "@mui/material";
 import { SessionContext } from "context/SessionContext";
+import LikesDisplay from "@layouts/components/LikesDisplay";
+
+const likesSend = [
+  {
+    name: "Richard Hendricks",
+    type_service: "Service Type 1",
+    description:
+      "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.",
+    url: "/images/author.png",
+  },
+  {
+    name: "Erlich Bachman",
+    type_service: "Service Type 2",
+    description:
+      "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet .Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet .",
+    url: "/images/author.png",
+  },
+  {
+    name: "Monica Hall",
+    type_service: "Service Type 3",
+    description: "Description for Service Type 3",
+    url: "/images/author.png",
+  },
+  {
+    name: "Jared Dunn",
+    type_service: "Service Type 4",
+    description: "Description for Service Type 4",
+    url: "/images/author.png",
+  },
+  {
+    name: "Dinesh Chugtai",
+    type_service: "Service Type 5",
+    description:
+      "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.",
+    url: "/images/author.png",
+  },
+  {
+    name: "Dinesh Chugtai",
+    type_service: "Service Type 5",
+    description:
+      "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.",
+    url: "/images/author.png",
+  },
+];
+
+const likes = [
+  {
+    name: "Richard Hendricks",
+    type_service: "Service Type 1",
+    description:
+      "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.",
+    url: "/images/author.png",
+  },
+  {
+    name: "Erlich Bachman",
+    type_service: "Service Type 2",
+    description:
+      "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet .Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet .",
+    url: "/images/author.png",
+  },
+];
 
 const MatchContainer = () => {
   const session = useContext(SessionContext);
@@ -18,8 +77,8 @@ const MatchContainer = () => {
 
   return (
     <ContractorsLayoutBase>
-      <div className="flex flex-row justify-center gap-x-4">
-        <div className="chat-container">
+      <div className="flex flex-row justify-center gap-x-4 ">
+        <div className="like-container">
           {/* Header */}
           <div className="m-auto flex h-24 items-center justify-between rounded-t-2xl bg-gradient-to-tr from-yellow-700 to-yellow-200">
             <div className="profile">
@@ -37,24 +96,32 @@ const MatchContainer = () => {
           </div>
 
           {/* Tabs */}
-          <div className="mt-4 flex flex-row justify-center">
+          <div className="flex">
             <button
-              className="mx-auto text-sm"
+              className={`h-8 flex-1 text-sm hover:bg-yellow-400 ${
+                clickedUser ? "bg-yellow-200 text-black" : ""
+              }`}
               onClick={() => setClickedUser(true)}
             >
               Likes
             </button>
             <button
-              className="mx-auto text-sm"
+              className={`h-8 flex-1 text-sm hover:bg-yellow-400 ${
+                !clickedUser ? "bg-yellow-200 text-black" : ""
+              }`}
               onClick={() => setClickedUser(false)}
             >
               Likes Sent
             </button>
           </div>
 
-          {!clickedUser && <MatchesDisplay setClickedUser={setClickedUser} />}
+          {!clickedUser && (
+            <LikesDisplay cards={likesSend} setClickedUser={setClickedUser} />
+          )}
 
-          {clickedUser && <ChatDisplay clickedUser={clickedUser} />}
+          {clickedUser && (
+            <LikesDisplay cards={likes} setClickedUser={setClickedUser} />
+          )}
         </div>
         <RightHandSide />
       </div>

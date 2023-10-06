@@ -1,0 +1,24 @@
+.like-container {
+    @apply bg-white shadow-black text-left w-2/5 items-center rounded-t-2xl dark:bg-blue-950;
+  }
+  
+  .card-like {
+    @apply w-full bg-theme-light dark:bg-darkmode-body rounded-2xl flex flex-col mb-4;
+  }
+  
+  .card-image-like {
+    @apply w-full h-40 bg-cover bg-center rounded-t-2xl;
+  }
+  
+  .card-content-like {
+    @apply p-4 flex flex-col gap-y-2;
+  }
+  
+  .card-title-like {
+    @apply text-xl mb-2 font-bold dark:text-gray-400; 
+  }
+  
+  .card-subtitle-like {
+    @apply text-sm text-gray-600 mb-2;
+  }
+  

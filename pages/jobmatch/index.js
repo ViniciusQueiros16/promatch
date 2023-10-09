@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import RightHandSide from "@layouts/components/homeFeed/RightHandSide";
 import ContractorsLayoutBase from "@layouts/ContractorsLayoutBase";
 import { Avatar } from "@mui/material";
 import { SessionContext } from "context/SessionContext";
 import LikesDisplay from "@layouts/components/LikesDisplay";
+import Highlights from "@layouts/components/Highlights";
 
 const likesSend = [
   {
@@ -123,7 +123,7 @@ const MatchContainer = () => {
             <LikesDisplay cards={likes} setClickedUser={setClickedUser} />
           )}
         </div>
-        <RightHandSide />
+        <Highlights />
       </div>
     </ContractorsLayoutBase>
   );

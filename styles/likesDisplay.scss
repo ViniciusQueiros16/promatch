@@ -1,5 +1,6 @@
 .like-container {
-  @apply bg-white max-h-screen h-auto shadow-black text-left w-2/5 items-center rounded-t-2xl dark:bg-blue-950;
+  @apply bg-white h-full shadow-black text-left w-2/5 items-center rounded-t-2xl dark:bg-blue-950;
+
 }
 
 .card-like {
@@ -21,4 +22,3 @@
 .card-subtitle-like {
   @apply text-sm text-gray-600 mb-2;
 }
-  

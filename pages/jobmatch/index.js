@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ContractorsLayoutBase from "@layouts/ContractorsLayoutBase";
-import { Avatar } from "@mui/material";
+import { Avatar, Pagination } from "@mui/material";
 import { SessionContext } from "context/SessionContext";
 import LikesDisplay from "@layouts/components/LikesDisplay";
 import Highlights from "@layouts/components/Highlights";
@@ -122,6 +122,13 @@ const MatchContainer = () => {
           {clickedUser && (
             <LikesDisplay cards={likes} setClickedUser={setClickedUser} />
           )}
+
+          <Pagination
+            count={3}
+            variant="outlined"
+            color="primary"
+            className="mb-4 flex items-center justify-center"
+          />
         </div>
         <Highlights />
       </div>

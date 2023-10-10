@@ -1,4 +1,5 @@
 import React from "react";
+import SwipeIcons from "./match/SwipeIcons";
 
 function LikesDisplay({ cards }) {
   return (
@@ -14,6 +15,9 @@ function LikesDisplay({ cards }) {
             ></div>
             <div className="card-content-like">
               <h3 className="card-title-like">{card.name}</h3>
+              <div className="swipe-icons-container">
+                <SwipeIcons />
+              </div>
               <p className="card-subtitle-like">{card.type_service}</p>
             </div>
           </div>

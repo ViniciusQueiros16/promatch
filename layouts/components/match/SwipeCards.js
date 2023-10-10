@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Chip } from "@mui/material";
 import ReadMore from "../ReadMore";
 import SwipeIcons from "./SwipeIcons";
 
@@ -92,6 +92,13 @@ const SwipeCards = ({ characters }) => {
                     </div>
                     <p className="card-subtitle">{character.type_service}</p>
                     <ReadMore>{character.description}</ReadMore>
+                    <div className="card-tags">
+                      {character.tags.map((tag, index) => (
+                        <div key={index} className="m-2">
+                          <Chip label={tag} />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </TinderCard>

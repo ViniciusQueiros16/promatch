@@ -41,6 +41,10 @@
   @apply text-sm  text-gray-600 mb-2; 
 }
 
+.card-tags {
+  @apply flex flex-wrap
+}
+
 
 .swipe-info {
   @apply absolute;

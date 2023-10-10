@@ -10,6 +10,7 @@ const db = [
     description:
       "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.",
     url: "/images/author.png",
+    tags: ["#photography", "#travel", "#winter"],
   },
   {
     name: "Erlich Bachman",
@@ -17,18 +18,21 @@ const db = [
     description:
       "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet .Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet .",
     url: "/images/author.png",
+    tags: ["#photography", "#travel", "#winter"],
   },
   {
     name: "Monica Hall",
     type_service: "Service Type 3",
     description: "Description for Service Type 3",
     url: "/images/author.png",
+    tags: ["#photography", "#travel", "#winter"],
   },
   {
     name: "Jared Dunn",
     type_service: "Service Type 4",
     description: "Description for Service Type 4",
     url: "/images/author.png",
+    tags: ["#photography", "#travel", "#winter"],
   },
   {
     name: "Dinesh Chugtai",
@@ -36,6 +40,7 @@ const db = [
     description:
       "Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.Lorem ipsum dolor sit amet, conse tfctetur adipiscing elit. Vel in in donec iaculis tempasus odio nunc laoreet . Libero ullam rgscorper.",
     url: "/images/author.png",
+    tags: ["#photography", "#travel", "#winter"],
   },
 ];
 

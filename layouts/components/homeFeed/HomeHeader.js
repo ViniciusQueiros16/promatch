@@ -13,6 +13,7 @@ import {
   Handshake,
 } from "@mui/icons-material";
 
+import { Badge } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
@@ -21,16 +22,13 @@ import Logout from "../Logout";
 
 const HomeHeader = () => {
   const session = useContext(SessionContext);
-  // distructuring the main menu from menu object
-  const { main } = menu;
 
-  // states declaration
+  const { main } = menu;
 
   const [showMenu, setShowMenu] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
 
-  // Router
   const router = useRouter();
 
   //stop scrolling when nav is open
@@ -41,6 +39,16 @@ const HomeHeader = () => {
       document.body.classList.remove("menu-open");
     }
   }, [showMenu]);
+
+  const icons = {
+    Home,
+    AccountTree,
+    Work,
+    Chat,
+    Notifications,
+    Person,
+    Handshake,
+  };
 
   return (
     <header className="header">
@@ -81,24 +89,18 @@ const HomeHeader = () => {
                             .includes(router.asPath) && "active"
                         } inline-flex items-center`}
                       >
-                        {menu.icon === "Person" && session.user?.avatar ? (
+                        {menu.icon === "Notifications" ? (
+                          <Badge badgeContent={4} color="primary">
+                            {React.createElement(icons[menu.icon])}
+                          </Badge>
+                        ) : menu.icon === "Person" && session.user?.avatar ? (
                           <img
                             src={session.user.avatar}
                             alt="User Avatar"
                             className=" h-8 w-8 cursor-pointer rounded-full"
                           />
                         ) : (
-                          React.createElement(
-                            {
-                              Home,
-                              AccountTree,
-                              Work,
-                              Chat,
-                              Notifications,
-                              Person,
-                              Handshake,
-                            }[menu.icon]
-                          )
+                          React.createElement(icons[menu.icon])
                         )}
 
                         <span className="pl-2">{menu.name}</span>
@@ -144,16 +146,18 @@ const HomeHeader = () => {
                           router.asPath === menu.url && "active"
                         }`}
                       >
-                        {React.createElement(
-                          {
-                            Home,
-                            AccountTree,
-                            Work,
-                            Chat,
-                            Notifications,
-                            Person,
-                            Handshake,
-                          }[menu.icon]
+                        {menu.icon === "Notifications" ? (
+                          <Badge badgeContent={4} color="primary">
+                            {React.createElement(icons[menu.icon])}
+                          </Badge>
+                        ) : menu.icon === "Person" && session.user?.avatar ? (
+                          <img
+                            src={session.user.avatar}
+                            alt="User Avatar"
+                            className=" h-8 w-8 cursor-pointer rounded-full"
+                          />
+                        ) : (
+                          React.createElement(icons[menu.icon])
                         )}
                         <span className="pl-2">{menu.name}</span>
                       </Link>

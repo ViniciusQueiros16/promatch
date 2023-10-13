@@ -18,7 +18,7 @@ function ChatHeader() {
   };
 
   return (
-    <div className="my-auto flex items-center justify-between border-b-2 bg-white">
+    <div className="flex items-center justify-between border-b-2 bg-white dark:bg-darkmode-body">
       <div className="flex items-center">
         <div className="img-container">
           <Avatar
@@ -31,7 +31,7 @@ function ChatHeader() {
         </div>
         <div className="flex flex-col pt-4">
           <h4 className="text-lg text-gray-500">
-            Web design para criar páginas de um
+            Web design to create one-pages
           </h4>
           <Link href="/profile">
             <p className="text-sm hover:underline">silsil</p>
@@ -39,7 +39,11 @@ function ChatHeader() {
         </div>
       </div>
       <div onClick={toggleFavorite}>
-        {favorite ? <Star /> : <StarBorderOutlined />}
+        {favorite ? (
+          <Star className="text-yellow-300" />
+        ) : (
+          <StarBorderOutlined className="text-yellow-300" />
+        )}
       </div>
     </div>
   );

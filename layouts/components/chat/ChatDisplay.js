@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Chat from "./Chat";
 import ChatHeader from "./ChatHeader";
 import { Send } from "@mui/icons-material";
 
-const ChatDisplay = ({ clickedUser }) => {
+const ChatDisplay = ({ selectedMatch }) => {
+  useEffect(() => {
+    console.log('Selected match in ChatDisplay:', selectedMatch);
+  }, [selectedMatch]);
   return (
     <div className="flex h-screen flex-col px-5">
       <ChatHeader />

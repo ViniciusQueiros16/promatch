@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Search } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 
 const users = [
   {
@@ -36,7 +36,6 @@ const users = [
 ];
 
 const MatchesDisplay = ({ handleUserClick, selectedMatch }) => {
-  
   return (
     <div className="my-4 flex w-2/5 flex-col overflow-y-auto border-r-2">
       <div className="flex items-center justify-center text-xl font-semibold">
@@ -80,7 +79,7 @@ const UserListItem = ({ imgSrc, name, message }) => {
   return (
     <div className="flex flex-row items-center border-b-2 px-2 py-4">
       <div className="w-1/4">
-        <img
+        <Avatar
           src={imgSrc}
           className="h-12 w-12 rounded-full object-cover"
           alt="matched user section"

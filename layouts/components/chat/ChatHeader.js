@@ -18,7 +18,7 @@ function ChatHeader() {
   };
 
   return (
-    <div className="flex items-center justify-between border-b-2 bg-white dark:bg-darkmode-body">
+    <div className="flex items-center justify-between border-b-2 bg-white h-24 dark:bg-darkmode-body">
       <div className="flex items-center">
         <div className="img-container">
           <Avatar

@@ -26,11 +26,6 @@
       "icon": "Chat"
     },
     {
-      "name": "Notification",
-      "url": "/notification",
-      "icon": "Notifications"
-    },
-    {
       "name": "Me",
       "url": "",
       "icon": "Person",

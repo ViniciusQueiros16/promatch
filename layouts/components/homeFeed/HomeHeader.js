@@ -19,6 +19,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { SessionContext } from "context/SessionContext";
 import Logout from "../Logout";
+import NotificationsDisplay from "../NotificationsDisplay";
 
 const HomeHeader = () => {
   const session = useContext(SessionContext);
@@ -28,6 +29,7 @@ const HomeHeader = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [searchModal, setSearchModal] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const router = useRouter();
 
@@ -48,6 +50,10 @@ const HomeHeader = () => {
     Notifications,
     Person,
     Handshake,
+  };
+
+  const toggleNotifications = () => {
+    setShowNotifications((prevState) => !prevState);
   };
 
   return (
@@ -89,11 +95,7 @@ const HomeHeader = () => {
                             .includes(router.asPath) && "active"
                         } inline-flex items-center`}
                       >
-                        {menu.icon === "Notifications" ? (
-                          <Badge badgeContent={4} color="primary">
-                            {React.createElement(icons[menu.icon])}
-                          </Badge>
-                        ) : menu.icon === "Person" && session.user?.avatar ? (
+                        {menu.icon === "Person" && session.user?.avatar ? (
                           <img
                             src={session.user.avatar}
                             alt="User Avatar"
@@ -146,11 +148,7 @@ const HomeHeader = () => {
                           router.asPath === menu.url && "active"
                         }`}
                       >
-                        {menu.icon === "Notifications" ? (
-                          <Badge badgeContent={4} color="primary">
-                            {React.createElement(icons[menu.icon])}
-                          </Badge>
-                        ) : menu.icon === "Person" && session.user?.avatar ? (
+                        {menu.icon === "Person" && session.user?.avatar ? (
                           <img
                             src={session.user.avatar}
                             alt="User Avatar"
@@ -169,6 +167,17 @@ const HomeHeader = () => {
             {logoutModal && (
               <Logout showModal={logoutModal} setShowModal={setLogoutModal} />
             )}
+          </div>
+
+          <div
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary p-2.5 text-xl text-white"
+            onClick={toggleNotifications}
+          >
+            <div className="relative">
+              <Badge badgeContent={4} color="primary">
+                <Notifications />
+              </Badge>
+            </div>
           </div>
 
           <div
@@ -201,6 +210,10 @@ const HomeHeader = () => {
             )}
           </button>
         </div>
+        <NotificationsDisplay
+          showNotifications={showNotifications}
+          setShowNotifications={setShowNotifications}
+        />
         <SearchModal
           searchModal={searchModal}
           setSearchModal={setSearchModal}

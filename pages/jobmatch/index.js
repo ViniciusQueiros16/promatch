@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import ContractorsLayoutBase from "@layouts/ContractorsLayoutBase";
-import { Avatar, Pagination } from "@mui/material";
-import { SessionContext } from "context/SessionContext";
+import { Pagination } from "@mui/material";
 import LikesDisplay from "@layouts/components/LikesDisplay";
 import Highlights from "@layouts/components/Highlights";
+import UserHeader from "@layouts/components/UserHeader";
 
 const likesSend = [
   {
@@ -66,34 +66,13 @@ const likes = [
 ];
 
 const MatchContainer = () => {
-  const session = useContext(SessionContext);
-  console.log(session);
   const [clickedUser, setClickedUser] = useState(false);
-  const [speed, setSpeed] = useState();
-
-  useEffect(() => {
-    setSpeed(Math.floor(Math.random() * 5000));
-  }, []);
 
   return (
     <ContractorsLayoutBase>
       <div className="flex flex-row justify-center gap-x-4 ">
         <div className="like-container">
-          {/* Header */}
-          <div className="m-auto flex h-24 items-center justify-between rounded-t-2xl bg-gradient-to-tr from-yellow-700 to-yellow-200">
-            <div className="profile">
-              <div className="img-container">
-                <Avatar
-                  src={
-                    session?.user?.avatar
-                      ? session.user?.avatar
-                      : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
-                  }
-                />
-              </div>
-              <h4>{session?.user?.username}</h4>
-            </div>
-          </div>
+          <UserHeader />
 
           {/* Tabs */}
           <div className="flex">

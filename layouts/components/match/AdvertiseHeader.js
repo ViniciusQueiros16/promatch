@@ -1,32 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Avatar, Icon } from "@mui/material";
-import { SessionContext } from "context/SessionContext";
+import React from "react";
+import { Icon } from "@mui/material";
 import { IoArrowRedoSharp, IoArrowUndoSharp } from "react-icons/io5";
+import UserHeader from "../UserHeader";
 
 function AdvertiseHeader({ onCollapseToggle, isCollapsed }) {
-  const session = useContext(SessionContext);
-  const [speed, setSpeed] = useState();
-
-  useEffect(() => {
-    setSpeed(Math.floor(Math.random() * 5000));
-  }, []);
-
   return (
     <div className="container-header">
-      {!isCollapsed && (
-        <div className="profile">
-          <div className="img-container">
-            <Avatar
-              src={
-                session.user?.avatar
-                  ? session.user?.avatar
-                  : `https://avatars.dicebear.com/api/avataaars/${speed}.svg`
-              }
-            />
-          </div>
-          <h4>{session.user?.username}</h4>
-        </div>
-      )}
+      {!isCollapsed && <UserHeader />}
 
       <Icon
         as={isCollapsed ? IoArrowRedoSharp : IoArrowUndoSharp}

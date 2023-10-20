@@ -7,6 +7,7 @@ const messages = [
     name: "Brunch this week?",
     message: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
     imgSrc: "/static/images/avatar/5.jpg",
+    date: "Today",
   },
   {
     id: 2,
@@ -14,24 +15,29 @@ const messages = [
     message: `Do you have a suggestion for a good present for John on his work
       anniversary. I am really confused & would love your thoughts on it.`,
     imgSrc: "/static/images/avatar/1.jpg",
+    date: "Yesterday",
   },
   {
     id: 3,
     name: "Recipe to try",
-    message: "I am try out this new BBQ recipe, I think this might be amazing",
+    message:
+      "I am trying out this new BBQ recipe, I think this might be amazing",
     imgSrc: "/static/images/avatar/2.jpg",
+    date: "Yesterday",
   },
   {
     id: 4,
     name: "Yes!",
     message: "I have the tickets to the ReactConf for this year.",
     imgSrc: "/static/images/avatar/3.jpg",
+    date: "2 days ago",
   },
   {
     id: 5,
     name: "Doctor's Appointment",
     message: "My appointment for the doctor was rescheduled for next Saturday.",
     imgSrc: "/static/images/avatar/4.jpg",
+    date: "3 days ago",
   },
   {
     id: 6,
@@ -40,6 +46,7 @@ const messages = [
       navigation drawer or overflow menu) open as bottom sheets at a higher elevation
       than the bar.`,
     imgSrc: "/static/images/avatar/5.jpg",
+    date: "3 days ago",
   },
   {
     id: 7,
@@ -47,6 +54,7 @@ const messages = [
     message: `Who wants to have a cookout this weekend? I just got some furniture
       for my backyard and would love to fire up the grill.`,
     imgSrc: "/static/images/avatar/1.jpg",
+    date: "1 week ago",
   },
 ];
 
@@ -55,27 +63,46 @@ const NotificationsDisplay = ({ showNotifications, setShowNotifications }) => {
     setShowNotifications(false);
   };
 
+  const groupMessagesByDate = () => {
+    const groupedMessages = {};
+    messages.forEach((message) => {
+      if (!groupedMessages[message.date]) {
+        groupedMessages[message.date] = [];
+      }
+      groupedMessages[message.date].push(message);
+    });
+    return groupedMessages;
+  };
+
+  const groupedMessages = groupMessagesByDate();
+
   return (
     <div
-      className={`fixed right-28 top-14 z-50 flex max-h-full pt-4 flex-col p-2 ${
+      className={`fixed right-28 top-14 z-50 flex max-h-96 flex-col p-2 pt-4 ${
         showNotifications ? "" : "hidden"
       }`}
       onClick={handleClose}
     >
       <div
-        className="w-96 overflow-y-auto rounded-lg bg-white dark:bg-gray-700"
+        className="w-96 overflow-y-auto rounded-lg border bg-white dark:bg-gray-700"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center pt-2 justify-center text-xl font-semibold">
-          Imbox
+        <div className="flex items-center justify-center py-2 text-xl font-semibold">
+          Notifications
         </div>
-        {messages.map((message, index) => (
-          <div key={index}>
-            <UserListItem
-              imgSrc={message.imgSrc}
-              name={message.name}
-              message={message.message}
-            />
+        {Object.keys(groupedMessages).map((date) => (
+          <div key={date}>
+            <div className=" bg-gray-200 pl-2 dark:bg-theme-dark">{date}</div>
+            {groupedMessages[date].map((message) => (
+              <div className="hover:bg-gray-100" key={message.id}>
+                <UserListItem
+                  key={message.id}
+                  imgSrc={message.imgSrc}
+                  name={message.name}
+                  message={message.message}
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>

@@ -27,10 +27,7 @@ const Signup = () => {
 
       setCookie("authorization", json.token);
 
-      router.push({
-        pathname: "/profile",
-        query: { editProfile: true },
-      });
+      router.push("/onboarding");
     } catch (error) {
       setError(error.message + " Unable to register. Try again!");
     }

@@ -1,9 +1,47 @@
-import { FormControlLabel, Switch } from "@mui/material";
 import React from "react";
+import { getCookie } from "cookies-next";
+import api from "services/api";
 
 const OnBoardingForm = () => {
+  const token = getCookie("authorization");
+  const [formData, setFormData] = useState({
+    username: "",
+    type_service: "",
+    about: "",
+    email: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    const data = {
+      username: formData.username,
+      type_service: formData.type_service,
+      about: formData.about,
+      email: formData.email,
+    };
+
+    try {
+      const response = await api.put("users/profile", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSave}>
       <div className="space-y-12 py-4">
         <h2 className="flex items-center justify-center p-4 font-sans text-gray-600">
           CREATE ACCOUNT
@@ -27,6 +65,8 @@ const OnBoardingForm = () => {
                     id="username"
                     autocomplete="username"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    value={formData.username}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -47,6 +87,8 @@ const OnBoardingForm = () => {
                     id="type_service"
                     autocomplete="type_service"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    value={formData.type_service}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -168,6 +210,8 @@ const OnBoardingForm = () => {
                   name="first-name"
                   id="first-name"
                   autocomplete="given-name"
+                  value={formData.first - name}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -186,6 +230,8 @@ const OnBoardingForm = () => {
                   name="last-name"
                   id="last-name"
                   autocomplete="family-name"
+                  value={formData.last - name}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -204,6 +250,8 @@ const OnBoardingForm = () => {
                   name="email"
                   type="email"
                   autocomplete="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -247,6 +295,8 @@ const OnBoardingForm = () => {
                   type="tel"
                   name="phone-number"
                   id="phone-number"
+                  value={formData.phone - number}
+                  onChange={handleChange}
                   autocomplete="tel"
                   className="block w-full rounded-md border-0 px-3.5 py-2 pl-20  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -265,6 +315,8 @@ const OnBoardingForm = () => {
                   type="text"
                   name="company"
                   id="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   autocomplete="company"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -304,6 +356,8 @@ const OnBoardingForm = () => {
                   type="text"
                   name="street-address"
                   id="street-address"
+                  value={formData.street - address}
+                  onChange={handleChange}
                   autocomplete="street-address"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -321,6 +375,8 @@ const OnBoardingForm = () => {
                 <input
                   type="text"
                   name="city"
+                  value={formData.street - address}
+                  onChange={handleChange}
                   id="city"
                   autocomplete="address-level2"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -339,6 +395,8 @@ const OnBoardingForm = () => {
                 <input
                   type="text"
                   name="region"
+                  value={formData.street - address}
+                  onChange={handleChange}
                   id="region"
                   autocomplete="address-level1"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -357,6 +415,8 @@ const OnBoardingForm = () => {
                 <input
                   type="text"
                   name="postal-code"
+                  value={formData.street - address}
+                  onChange={handleChange}
                   id="postal-code"
                   autocomplete="postal-code"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -384,6 +444,8 @@ const OnBoardingForm = () => {
                     <input
                       id="comments"
                       name="comments"
+                      value={formData.street - address}
+                      onChange={handleChange}
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
@@ -402,6 +464,8 @@ const OnBoardingForm = () => {
                     <input
                       id="candidates"
                       name="candidates"
+                      value={formData.street - address}
+                      onChange={handleChange}
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
@@ -475,6 +539,8 @@ const OnBoardingForm = () => {
                   <input
                     id="push-nothing"
                     name="push-notifications"
+                    value={formData.push - notifications}
+                    onChange={handleChange}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />

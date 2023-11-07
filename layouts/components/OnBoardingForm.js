@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getCookie } from "cookies-next";
 import api from "services/api";
 
@@ -9,24 +9,61 @@ const OnBoardingForm = () => {
     type_service: "",
     about: "",
     email: "",
+    avatar: "",
+    birthdate: "",
+    gender: "",
+    first_name: "",
+    last_name: "",
+    cover_photo: "",
+    phone_number: "",
+    user_type_id: "",
+    privacy_accepted: false, 
+    country: "",
+    street_address: "",
+    city: "",
+    state: "",
+    postal_code: "",
+    comments: false, 
+    candidates: false,
+    offers: false, 
+    sms_delivery_option: "push-everything", 
   });
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    const { name, value, type, checked } = event.target;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleSave = async (event) => {
     event.preventDefault();
     const data = {
-      username: formData.username,
-      type_service: formData.type_service,
+      avatar: formData.avatar,
+      birthdate: formData.birthdate,
+      gender: formData.gender,
       about: formData.about,
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      cover_photo: formData.cover_photo,
+      phone_number: formData.phone_number,
+      username: formData.username,
       email: formData.email,
+      user_type_id: formData.user_type_id,
+      privacy_accepted: formData.privacy_accepted,
+      country: formData.country,
+      street_address: formData.street_address,
+      city: formData.city,
+      state: formData.state,
+      postal_code: formData.postal_code,
+      comments: formData.comments,
+      candidates: formData.candidates,
+      offers: formData.offers,
+      sms_delivery_option: formData.sms_delivery_option,
     };
+    console.log(data);
 
     try {
       const response = await api.put("users/profile", data, {
@@ -106,6 +143,8 @@ const OnBoardingForm = () => {
                   id="about"
                   name="about"
                   rows="3"
+                  value={formData.about}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 ></textarea>
               </div>
@@ -131,13 +170,20 @@ const OnBoardingForm = () => {
                   <path
                     fill-rule="evenodd"
                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                    clip-rule="evenodd"
                   />
                 </svg>
                 <button
                   type="button"
                   className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold shadow-sm  ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-darkmode-text"
                 >
+                  <input
+                    id="file-upload"
+                    name="file-upload"
+                    type="file"
+                    value={formData.cover_photo}
+                    onChange={handleChange}
+                    className="sr-only"
+                  />
                   Change
                 </button>
               </div>
@@ -161,7 +207,6 @@ const OnBoardingForm = () => {
                     <path
                       fill-rule="evenodd"
                       d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                      clip-rule="evenodd"
                     />
                   </svg>
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
@@ -174,6 +219,8 @@ const OnBoardingForm = () => {
                         id="file-upload"
                         name="file-upload"
                         type="file"
+                        value={formData.avatar}
+                        onChange={handleChange}
                         className="sr-only"
                       />
                     </label>
@@ -207,10 +254,10 @@ const OnBoardingForm = () => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="first-name"
-                  id="first-name"
+                  name="first_name"
+                  id="first_name"
                   autocomplete="given-name"
-                  value={formData.first - name}
+                  value={formData.first_name}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -227,10 +274,10 @@ const OnBoardingForm = () => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="last-name"
-                  id="last-name"
+                  name="last_name"
+                  id="last_name"
                   autocomplete="family-name"
-                  value={formData.last - name}
+                  value={formData.last_name}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -260,6 +307,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2">
               <label
                 for="phone-number"
+                value={formData.phone_number}
                 className="block text-sm font-semibold leading-6 "
               >
                 Phone number
@@ -270,8 +318,8 @@ const OnBoardingForm = () => {
                     Country
                   </label>
                   <select
-                    id="country"
-                    name="country"
+                    id="phone_number"
+                    name="phone_number"
                     className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                   >
                     <option>US</option>
@@ -287,17 +335,16 @@ const OnBoardingForm = () => {
                     <path
                       fill-rule="evenodd"
                       d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clip-rule="evenodd"
                     />
                   </svg>
                 </div>
                 <input
                   type="tel"
-                  name="phone-number"
-                  id="phone-number"
-                  value={formData.phone - number}
+                  name="phone_number"
+                  id="phone_number"
+                  value={formData.phone_number}
                   onChange={handleChange}
-                  autocomplete="tel"
+                  autocomplete="phone"
                   className="block w-full rounded-md border-0 px-3.5 py-2 pl-20  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -305,21 +352,45 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="company"
-                className="block text-sm font-medium leading-6 "
+                for="birthdate"
+                className="block text-sm font-medium leading-6"
               >
-                Company
+                Birthdate
               </label>
               <div className="mt-2">
                 <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  autocomplete="company"
+                  type="date"
+                  name="birthdate"
+                  id="birthdate"
+                  autoComplete="birthdate"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={formData.birthdate}
+                  onChange={handleChange}
                 />
+              </div>
+            </div>
+
+            <div className="sm:col-span-3">
+              <label
+                for="gender"
+                className="block text-sm font-medium leading-6"
+              >
+                Gender
+              </label>
+              <div className="mt-2">
+                <select
+                  type="select"
+                  name="gender"
+                  id="gender"
+                  autoComplete="gender"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={formData.gender}
+                  onChange={handleChange}
+                >
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
               </div>
             </div>
 
@@ -335,6 +406,8 @@ const OnBoardingForm = () => {
                   id="country"
                   name="country"
                   autocomplete="country-name"
+                  value={formData.country}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
                   <option>United States</option>
@@ -344,7 +417,7 @@ const OnBoardingForm = () => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            <div className="col-span-3">
               <label
                 for="street-address"
                 className="block text-sm font-medium leading-6 "
@@ -354,9 +427,9 @@ const OnBoardingForm = () => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="street-address"
-                  id="street-address"
-                  value={formData.street - address}
+                  name="street_address"
+                  id="street_address"
+                  value={formData.street_address}
                   onChange={handleChange}
                   autocomplete="street-address"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -375,7 +448,7 @@ const OnBoardingForm = () => {
                 <input
                   type="text"
                   name="city"
-                  value={formData.street - address}
+                  value={formData.city}
                   onChange={handleChange}
                   id="city"
                   autocomplete="address-level2"
@@ -394,10 +467,10 @@ const OnBoardingForm = () => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="region"
-                  value={formData.street - address}
+                  name="state"
+                  value={formData.state}
                   onChange={handleChange}
-                  id="region"
+                  id="state"
                   autocomplete="address-level1"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -406,7 +479,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-2">
               <label
-                for="postal-code"
+                for="postal_code"
                 className="block text-sm font-medium leading-6 "
               >
                 ZIP / Postal code
@@ -414,10 +487,10 @@ const OnBoardingForm = () => {
               <div className="mt-2">
                 <input
                   type="text"
-                  name="postal-code"
-                  value={formData.street - address}
+                  name="postal_code"
+                  value={formData.postal_code}
                   onChange={handleChange}
-                  id="postal-code"
+                  id="postal_code"
                   autocomplete="postal-code"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -444,18 +517,18 @@ const OnBoardingForm = () => {
                     <input
                       id="comments"
                       name="comments"
-                      value={formData.street - address}
-                      onChange={handleChange}
+                      checked={formData.comments} 
+                      onChange={(e) => handleChange(e, "comments")} 
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label for="comments" className="font-medium ">
+                    <label htmlFor="comments" className="font-medium">
                       Comments
                     </label>
                     <p className="text-gray-500">
-                      Get notified when someones posts a comment on a posting.
+                      Get notified when someone posts a comment on a posting.
                     </p>
                   </div>
                 </div>
@@ -464,14 +537,14 @@ const OnBoardingForm = () => {
                     <input
                       id="candidates"
                       name="candidates"
-                      value={formData.street - address}
-                      onChange={handleChange}
+                      checked={formData.candidates}
+                      onChange={(e) => handleChange(e, "candidates")}
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label for="candidates" className="font-medium ">
+                    <label htmlFor="candidates" className="font-medium">
                       Candidates
                     </label>
                     <p className="text-gray-500">
@@ -484,12 +557,14 @@ const OnBoardingForm = () => {
                     <input
                       id="offers"
                       name="offers"
+                      checked={formData.offers}
+                      onChange={(e) => handleChange(e, "offers")}
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label for="offers" className="font-medium ">
+                    <label htmlFor="offers" className="font-medium">
                       Offers
                     </label>
                     <p className="text-gray-500">
@@ -510,13 +585,16 @@ const OnBoardingForm = () => {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="push-everything"
-                    name="push-notifications"
+                    name="sms_delivery_option"
+                    value="push-everything"
+                    checked={formData.sms_delivery_option === "push-everything"}
+                    onChange={handleChange}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-everything"
-                    className="block text-sm font-medium leading-6 "
+                    htmlFor="push-everything"
+                    className="block text-sm font-medium leading-6"
                   >
                     Everything
                   </label>
@@ -524,13 +602,16 @@ const OnBoardingForm = () => {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="push-email"
-                    name="push-notifications"
+                    name="sms_delivery_option"
+                    value="push-email"
+                    checked={formData.sms_delivery_option === "push-email"}
+                    onChange={handleChange}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-email"
-                    className="block text-sm font-medium leading-6 "
+                    htmlFor="push-email"
+                    className="block text-sm font-medium leading-6"
                   >
                     Same as email
                   </label>
@@ -538,34 +619,46 @@ const OnBoardingForm = () => {
                 <div className="flex items-center gap-x-3">
                   <input
                     id="push-nothing"
-                    name="push-notifications"
-                    value={formData.push - notifications}
+                    name="sms_delivery_option"
+                    value="no-push-notifications"
+                    checked={
+                      formData.sms_delivery_option === "no-push-notifications"
+                    }
                     onChange={handleChange}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label
-                    for="push-nothing"
-                    className="block text-sm font-medium leading-6 "
+                    htmlFor="push-nothing"
+                    className="block text-sm font-medium leading-6"
                   >
                     No push notifications
                   </label>
                 </div>
 
-                <div className="flex  sm:col-span-2">
-                  <div className="flex h-6 items-center">
-                    <FormControlLabel control={<Switch />} />
-                  </div>
-                  <label
-                    className="text-sm leading-6 text-gray-600"
+                <div className="flex sm:col-span-2">
+                  <label className="relative inline-flex cursor-pointer items-center">
+                    <input
+                      id="privacy_accepted"
+                      name="privacy_accepted"
+                      checked={formData.privacy_accepted}
+                      onChange={(e) => handleChange(e, "privacy_accepted")}
+                      type="checkbox"
+                      className="peer sr-only"
+                    />
+                    <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
+                  </label>
+
+                  <span
+                    className="ml-4 text-sm leading-6 text-gray-600"
                     id="switch-1-label"
                   >
                     By selecting this, you agree to our
-                    <a href="#" className="font-semibold text-indigo-600">
+                    <a href="#" className="ml-1 font-semibold text-indigo-600">
                       privacy&nbsp;policy
                     </a>
                     .
-                  </label>
+                  </span>
                 </div>
               </div>
             </fieldset>

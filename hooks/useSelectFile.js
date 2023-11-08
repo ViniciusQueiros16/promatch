@@ -1,22 +1,40 @@
 import React, { useState } from "react";
 
 const useSelectFile = () => {
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
-  const onSelectedFile = (event) => {
+  const onSelectedFile = (event, inputName) => {
     const reader = new FileReader();
+    const files = event.target.files;
 
-    if (event.target.files?.[0]) {
-      reader.readAsDataURL(event.target.files[0]);
+    if (files.length > 0) {
+      reader.readAsDataURL(files[0]);
+      reader.onload = (readerEvent) => {
+        setSelectedFiles((prevSelectedFiles) => {
+          const updatedFiles = [...prevSelectedFiles];
+          const existingFileIndex = updatedFiles.findIndex(
+            (file) => file.inputName === inputName
+          );
+
+          if (existingFileIndex !== -1) {
+            updatedFiles[existingFileIndex] = {
+              inputName,
+              dataURL: readerEvent.target?.result,
+            };
+          } else {
+            updatedFiles.push({
+              inputName,
+              dataURL: readerEvent.target?.result,
+            });
+          }
+
+          return updatedFiles;
+        });
+      };
     }
-
-    reader.onload = (readerEvent) => {
-      if (readerEvent.target?.result) {
-        setSelectedFile(readerEvent.target.result);
-      }
-    };
   };
 
-  return { selectedFile, setSelectedFile, onSelectedFile };
+  return { selectedFiles, onSelectedFile };
 };
+
 export default useSelectFile;

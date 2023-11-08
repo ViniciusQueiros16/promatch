@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { getCookie } from "cookies-next";
 import api from "services/api";
+import useSelectFile from "@hooks/useSelectFile";
 
 const OnBoardingForm = () => {
   const token = getCookie("authorization");
+  const { selectedFiles, onSelectedFile } = useSelectFile();
   const [formData, setFormData] = useState({
     username: "",
     type_service: "",
@@ -17,16 +19,16 @@ const OnBoardingForm = () => {
     cover_photo: "",
     phone_number: "",
     user_type_id: "",
-    privacy_accepted: false, 
+    privacy_accepted: false,
     country: "",
     street_address: "",
     city: "",
     state: "",
     postal_code: "",
-    comments: false, 
+    comments: false,
     candidates: false,
-    offers: false, 
-    sms_delivery_option: "push-everything", 
+    offers: false,
+    sms_delivery_option: "push-everything",
   });
 
   const handleChange = (event) => {
@@ -63,6 +65,20 @@ const OnBoardingForm = () => {
       offers: formData.offers,
       sms_delivery_option: formData.sms_delivery_option,
     };
+    const avatarFile = selectedFiles.find(
+      (file) => file.inputName === "avatar"
+    );
+    if (avatarFile) {
+      data.avatar = avatarFile.dataURL.split(",")[1]; // Extract base64 data after comma
+    }
+
+    const coverPhotoFile = selectedFiles.find(
+      (file) => file.inputName === "cover_photo"
+    );
+    if (coverPhotoFile) {
+      data.cover_photo = coverPhotoFile.dataURL.split(",")[1]; // Extract base64 data after comma
+    }
+
     console.log(data);
 
     try {
@@ -155,8 +171,8 @@ const OnBoardingForm = () => {
 
             <div className="col-span-full">
               <label
-                for="photo"
-                className="block text-sm font-medium leading-6 "
+                htmlFor="avatar"
+                className="block text-sm font-medium leading-6"
               >
                 Photo
               </label>
@@ -172,20 +188,19 @@ const OnBoardingForm = () => {
                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                   />
                 </svg>
-                <button
-                  type="button"
-                  className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold shadow-sm  ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-darkmode-text"
+                <label
+                  htmlFor="avatar"
+                  className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-darkmode-text"
                 >
                   <input
-                    id="file-upload"
-                    name="file-upload"
+                    id="avatar"
+                    name="avatar"
                     type="file"
-                    value={formData.cover_photo}
-                    onChange={handleChange}
+                    onChange={(e) => onSelectedFile(e, "avatar")}
                     className="sr-only"
                   />
                   Change
-                </button>
+                </label>
               </div>
             </div>
 
@@ -211,16 +226,15 @@ const OnBoardingForm = () => {
                   </svg>
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
                     <label
-                      for="file-upload"
+                      for="cover_photo"
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Upload a file</span>
                       <input
-                        id="file-upload"
-                        name="file-upload"
+                        id="cover_photo"
+                        name="cover_photo"
                         type="file"
-                        value={formData.avatar}
-                        onChange={handleChange}
+                        onChange={(e) => onSelectedFile(e, "cover_photo")}
                         className="sr-only"
                       />
                     </label>
@@ -304,7 +318,7 @@ const OnBoardingForm = () => {
               </div>
             </div>
 
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-3">
               <label
                 for="phone-number"
                 value={formData.phone_number}
@@ -408,7 +422,7 @@ const OnBoardingForm = () => {
                   autocomplete="country-name"
                   value={formData.country}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 >
                   <option>United States</option>
                   <option>Canada</option>
@@ -517,8 +531,8 @@ const OnBoardingForm = () => {
                     <input
                       id="comments"
                       name="comments"
-                      checked={formData.comments} 
-                      onChange={(e) => handleChange(e, "comments")} 
+                      checked={formData.comments}
+                      onChange={(e) => handleChange(e, "comments")}
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />

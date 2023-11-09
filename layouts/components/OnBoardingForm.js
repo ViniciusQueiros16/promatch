@@ -105,7 +105,7 @@ const OnBoardingForm = () => {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
-                for="username"
+                htmlFor="username"
                 className="block text-sm font-medium leading-6 "
               >
                 Username
@@ -116,7 +116,7 @@ const OnBoardingForm = () => {
                     type="text"
                     name="username"
                     id="username"
-                    autocomplete="username"
+                    autoComplete="username"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     value={formData.username}
                     onChange={handleChange}
@@ -127,29 +127,77 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="type_service"
-                className="block text-sm font-medium leading-6 "
+                htmlFor="user_type_id"
+                className="block text-sm font-medium leading-6"
               >
-                Type Service
+                User Type
               </label>
               <div className="mt-2">
-                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                  <input
-                    type="text"
-                    name="type_service"
-                    id="type_service"
-                    autocomplete="type_service"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    value={formData.type_service}
-                    onChange={handleChange}
-                  />
-                </div>
+                <select
+                  type="select"
+                  name="user_type_id"
+                  id="user_type_id"
+                  autoComplete="user_type_id"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={formData.user_type_id}
+                  onChange={handleChange}
+                >
+                  <option value="1">Client</option>
+                  <option value="2">Professional</option>
+                </select>
               </div>
             </div>
+            {formData.user_type_id === "1" && (
+              <div className="sm:col-span-full">
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium leading-6"
+                >
+                  Company
+                </label>
+                <div className="mt-2">
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <input
+                      type="text"
+                      name="company"
+                      id="company"
+                      autoComplete="company"
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      value={formData.company}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {formData.user_type_id === "2" && (
+              <div className="sm:col-span-full">
+                <label
+                  htmlFor="type_service"
+                  className="block text-sm font-medium leading-6"
+                >
+                  Type Service
+                </label>
+                <div className="mt-2">
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <input
+                      type="text"
+                      name="type_service"
+                      id="type_service"
+                      autoComplete="type_service"
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                      value={formData.type_service}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="col-span-full">
               <label
-                for="about"
+                htmlFor="about"
                 className="block text-sm font-medium leading-6 "
               >
                 About
@@ -184,7 +232,7 @@ const OnBoardingForm = () => {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                   />
                 </svg>
@@ -206,7 +254,7 @@ const OnBoardingForm = () => {
 
             <div className="col-span-full">
               <label
-                for="cover-photo"
+                htmlFor="cover-photo"
                 className="block text-sm font-medium leading-6 "
               >
                 Cover photo
@@ -220,13 +268,13 @@ const OnBoardingForm = () => {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
                     />
                   </svg>
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
                     <label
-                      for="cover_photo"
+                      htmlFor="cover_photo"
                       className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Upload a file</span>
@@ -260,7 +308,7 @@ const OnBoardingForm = () => {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label
-                for="first-name"
+                htmlFor="first-name"
                 className="block text-sm font-medium leading-6 "
               >
                 First name
@@ -270,7 +318,7 @@ const OnBoardingForm = () => {
                   type="text"
                   name="first_name"
                   id="first_name"
-                  autocomplete="given-name"
+                  autoComplete="given-name"
                   value={formData.first_name}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -280,7 +328,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="last-name"
+                htmlFor="last-name"
                 className="block text-sm font-medium leading-6 "
               >
                 Last name
@@ -290,7 +338,7 @@ const OnBoardingForm = () => {
                   type="text"
                   name="last_name"
                   id="last_name"
-                  autocomplete="family-name"
+                  autoComplete="family-name"
                   value={formData.last_name}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -300,7 +348,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="email"
+                htmlFor="email"
                 className="block text-sm font-medium leading-6 "
               >
                 Email address
@@ -310,7 +358,7 @@ const OnBoardingForm = () => {
                   id="email"
                   name="email"
                   type="email"
-                  autocomplete="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -320,7 +368,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="phone-number"
+                htmlFor="phone-number"
                 value={formData.phone_number}
                 className="block text-sm font-semibold leading-6 "
               >
@@ -328,12 +376,11 @@ const OnBoardingForm = () => {
               </label>
               <div className="relative mt-2.5">
                 <div className="absolute inset-y-0 left-0 flex items-center">
-                  <label for="country" className="sr-only">
+                  <label htmlFor="country" className="sr-only">
                     Country
                   </label>
                   <select
-                    id="phone_number"
-                    name="phone_number"
+                    name="phone"
                     className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                   >
                     <option>US</option>
@@ -347,7 +394,7 @@ const OnBoardingForm = () => {
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
                     />
                   </svg>
@@ -358,7 +405,7 @@ const OnBoardingForm = () => {
                   id="phone_number"
                   value={formData.phone_number}
                   onChange={handleChange}
-                  autocomplete="phone"
+                  autoComplete="phone"
                   className="block w-full rounded-md border-0 px-3.5 py-2 pl-20  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -366,7 +413,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="birthdate"
+                htmlFor="birthdate"
                 className="block text-sm font-medium leading-6"
               >
                 Birthdate
@@ -386,7 +433,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="gender"
+                htmlFor="gender"
                 className="block text-sm font-medium leading-6"
               >
                 Gender
@@ -410,7 +457,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-3">
               <label
-                for="country"
+                htmlFor="country"
                 className="block text-sm font-medium leading-6 "
               >
                 Country
@@ -419,7 +466,7 @@ const OnBoardingForm = () => {
                 <select
                   id="country"
                   name="country"
-                  autocomplete="country-name"
+                  autoComplete="country-name"
                   value={formData.country}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -433,7 +480,7 @@ const OnBoardingForm = () => {
 
             <div className="col-span-3">
               <label
-                for="street-address"
+                htmlFor="street-address"
                 className="block text-sm font-medium leading-6 "
               >
                 Street address
@@ -445,7 +492,7 @@ const OnBoardingForm = () => {
                   id="street_address"
                   value={formData.street_address}
                   onChange={handleChange}
-                  autocomplete="street-address"
+                  autoComplete="street-address"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -453,7 +500,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-2 sm:col-start-1">
               <label
-                for="city"
+                htmlFor="city"
                 className="block text-sm font-medium leading-6 "
               >
                 City
@@ -465,7 +512,7 @@ const OnBoardingForm = () => {
                   value={formData.city}
                   onChange={handleChange}
                   id="city"
-                  autocomplete="address-level2"
+                  autoComplete="address-level2"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -473,7 +520,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-2">
               <label
-                for="region"
+                htmlFor="region"
                 className="block text-sm font-medium leading-6 "
               >
                 State / Province
@@ -485,7 +532,7 @@ const OnBoardingForm = () => {
                   value={formData.state}
                   onChange={handleChange}
                   id="state"
-                  autocomplete="address-level1"
+                  autoComplete="address-level1"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -493,7 +540,7 @@ const OnBoardingForm = () => {
 
             <div className="sm:col-span-2">
               <label
-                for="postal_code"
+                htmlFor="postal_code"
                 className="block text-sm font-medium leading-6 "
               >
                 ZIP / Postal code
@@ -505,7 +552,7 @@ const OnBoardingForm = () => {
                   value={formData.postal_code}
                   onChange={handleChange}
                   id="postal_code"
-                  autocomplete="postal-code"
+                  autoComplete="postal-code"
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>

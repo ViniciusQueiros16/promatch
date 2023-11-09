@@ -117,7 +117,7 @@ const OnBoardingForm = () => {
                     name="username"
                     id="username"
                     autoComplete="username"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                     value={formData.username}
                     onChange={handleChange}
                   />
@@ -138,7 +138,7 @@ const OnBoardingForm = () => {
                   name="user_type_id"
                   id="user_type_id"
                   autoComplete="user_type_id"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                   value={formData.user_type_id}
                   onChange={handleChange}
                 >
@@ -198,7 +198,7 @@ const OnBoardingForm = () => {
             <div className="col-span-full">
               <label
                 htmlFor="about"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 About
               </label>
@@ -209,10 +209,10 @@ const OnBoardingForm = () => {
                   rows="3"
                   value={formData.about}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 ></textarea>
               </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
+              <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                 Write a few sentences about yourself.
               </p>
             </div>
@@ -286,9 +286,9 @@ const OnBoardingForm = () => {
                         className="sr-only"
                       />
                     </label>
-                    <p className="pl-1">or drag and drop</p>
+                    <p className="pl-1 dark:text-gray-300">or drag and drop</p>
                   </div>
-                  <p className="text-xs leading-5 text-gray-600">
+                  <p className="text-xs leading-5 text-gray-600 dark:text-gray-400">
                     PNG, JPG, GIF up to 10MB
                   </p>
                 </div>
@@ -301,7 +301,7 @@ const OnBoardingForm = () => {
           <h2 className="text-base font-semibold leading-7 ">
             Personal Information
           </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
             Use a permanent address where you can receive mail.
           </p>
 
@@ -309,7 +309,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="first-name"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 First name
               </label>
@@ -321,7 +321,7 @@ const OnBoardingForm = () => {
                   autoComplete="given-name"
                   value={formData.first_name}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -329,7 +329,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="last-name"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 Last name
               </label>
@@ -341,7 +341,7 @@ const OnBoardingForm = () => {
                   autoComplete="family-name"
                   value={formData.last_name}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -349,7 +349,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 Email address
               </label>
@@ -361,16 +361,16 @@ const OnBoardingForm = () => {
                   autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="mt-2.5 sm:col-span-3">
               <label
                 htmlFor="phone-number"
                 value={formData.phone_number}
-                className="block text-sm font-semibold leading-6 "
+                className="block text-sm font-semibold leading-6 text-white"
               >
                 Phone number
               </label>
@@ -406,15 +406,15 @@ const OnBoardingForm = () => {
                   value={formData.phone_number}
                   onChange={handleChange}
                   autoComplete="phone"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 pl-20  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="mt-5 sm:col-span-3">
               <label
                 htmlFor="birthdate"
-                className="block text-sm font-medium leading-6"
+                className="block text-sm font-medium leading-6 text-white"
               >
                 Birthdate
               </label>
@@ -424,17 +424,17 @@ const OnBoardingForm = () => {
                   name="birthdate"
                   id="birthdate"
                   autoComplete="birthdate"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                   value={formData.birthdate}
                   onChange={handleChange}
                 />
               </div>
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="mt-5 sm:col-span-3">
               <label
                 htmlFor="gender"
-                className="block text-sm font-medium leading-6"
+                className="block text-sm font-medium leading-6 text-white"
               >
                 Gender
               </label>
@@ -444,7 +444,7 @@ const OnBoardingForm = () => {
                   name="gender"
                   id="gender"
                   autoComplete="gender"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                   value={formData.gender}
                   onChange={handleChange}
                 >
@@ -458,7 +458,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="country"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 Country
               </label>
@@ -469,7 +469,7 @@ const OnBoardingForm = () => {
                   autoComplete="country-name"
                   value={formData.country}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                 >
                   <option>United States</option>
                   <option>Canada</option>
@@ -481,7 +481,7 @@ const OnBoardingForm = () => {
             <div className="col-span-3">
               <label
                 htmlFor="street-address"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 Street address
               </label>
@@ -493,7 +493,7 @@ const OnBoardingForm = () => {
                   value={formData.street_address}
                   onChange={handleChange}
                   autoComplete="street-address"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -501,7 +501,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2 sm:col-start-1">
               <label
                 htmlFor="city"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 City
               </label>
@@ -513,7 +513,7 @@ const OnBoardingForm = () => {
                   onChange={handleChange}
                   id="city"
                   autoComplete="address-level2"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -521,7 +521,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="region"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 State / Province
               </label>
@@ -533,7 +533,7 @@ const OnBoardingForm = () => {
                   onChange={handleChange}
                   id="state"
                   autoComplete="address-level1"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -541,7 +541,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="postal_code"
-                className="block text-sm font-medium leading-6 "
+                className="block text-sm font-medium leading-6 text-white"
               >
                 ZIP / Postal code
               </label>
@@ -553,7 +553,7 @@ const OnBoardingForm = () => {
                   onChange={handleChange}
                   id="postal_code"
                   autoComplete="postal-code"
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-300 dark:ring-gray-700 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -562,7 +562,7 @@ const OnBoardingForm = () => {
 
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 ">Notifications</h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">
+          <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
             We'll always let you know about important changes, but you pick what
             else you want to hear about.
           </p>
@@ -585,10 +585,10 @@ const OnBoardingForm = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="comments" className="font-medium">
+                    <label htmlFor="comments" className="font-bold">
                       Comments
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500  dark:text-gray-300">
                       Get notified when someone posts a comment on a posting.
                     </p>
                   </div>
@@ -605,10 +605,10 @@ const OnBoardingForm = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="candidates" className="font-medium">
+                    <label htmlFor="candidates" className="font-bold">
                       Candidates
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 dark:text-gray-300">
                       Get notified when a candidate applies for a job.
                     </p>
                   </div>
@@ -625,10 +625,10 @@ const OnBoardingForm = () => {
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="offers" className="font-medium">
+                    <label htmlFor="offers" className="font-bold">
                       Offers
                     </label>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 dark:text-gray-300">
                       Get notified when a candidate accepts or rejects an offer.
                     </p>
                   </div>
@@ -639,7 +639,7 @@ const OnBoardingForm = () => {
               <legend className="text-sm font-semibold leading-6 ">
                 Push Notifications
               </legend>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
+              <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
                 These are delivered via SMS to your mobile phone.
               </p>
               <div className="mt-6 space-y-6">
@@ -655,7 +655,7 @@ const OnBoardingForm = () => {
                   />
                   <label
                     htmlFor="push-everything"
-                    className="block text-sm font-medium leading-6"
+                    className="block text-sm font-bold leading-6"
                   >
                     Everything
                   </label>
@@ -672,7 +672,7 @@ const OnBoardingForm = () => {
                   />
                   <label
                     htmlFor="push-email"
-                    className="block text-sm font-medium leading-6"
+                    className="block text-sm font-bold leading-6"
                   >
                     Same as email
                   </label>
@@ -691,7 +691,7 @@ const OnBoardingForm = () => {
                   />
                   <label
                     htmlFor="push-nothing"
-                    className="block text-sm font-medium leading-6"
+                    className="block text-sm font-bold leading-6"
                   >
                     No push notifications
                   </label>
@@ -711,7 +711,7 @@ const OnBoardingForm = () => {
                   </label>
 
                   <span
-                    className="ml-4 text-sm leading-6 text-gray-600"
+                    className="ml-4 text-sm leading-6 text-gray-600 dark:text-gray-400"
                     id="switch-1-label"
                   >
                     By selecting this, you agree to our

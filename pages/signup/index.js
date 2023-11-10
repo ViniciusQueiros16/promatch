@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AuthForm from "@layouts/components/AuthForm";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
+import api from "services/api";
 
 const Signup = () => {
   const router = useRouter();
@@ -9,17 +10,8 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(
-        "https://6fk13vng11.execute-api.us-east-2.amazonaws.com/production/users",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-      const json = await response.json();
+      const response = await api.post("users", data);
+      const json = response.data;
 
       if (response.status !== 201) {
         throw new Error(json.error);
@@ -35,7 +27,6 @@ const Signup = () => {
 
   const fields = [
     { name: "username", label: "Username", type: "text" },
-    { name: "name", label: "Name", type: "text" },
     { name: "email", label: "Email", type: "email" },
     { name: "password", label: "Password", type: "password" },
   ];

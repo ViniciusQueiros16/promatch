@@ -198,7 +198,7 @@ const OnBoardingForm = () => {
             <div className="col-span-full">
               <label
                 htmlFor="about"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 About
               </label>
@@ -309,7 +309,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="first-name"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 First name
               </label>
@@ -329,7 +329,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="last-name"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Last name
               </label>
@@ -349,7 +349,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Email address
               </label>
@@ -366,11 +366,11 @@ const OnBoardingForm = () => {
               </div>
             </div>
 
-            <div className="mt-2.5 sm:col-span-3">
+            <div className="sm:col-span-3">
               <label
                 htmlFor="phone-number"
                 value={formData.phone_number}
-                className="block text-sm font-semibold leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Phone number
               </label>
@@ -414,7 +414,7 @@ const OnBoardingForm = () => {
             <div className="mt-5 sm:col-span-3">
               <label
                 htmlFor="birthdate"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Birthdate
               </label>
@@ -434,7 +434,7 @@ const OnBoardingForm = () => {
             <div className="mt-5 sm:col-span-3">
               <label
                 htmlFor="gender"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Gender
               </label>
@@ -458,7 +458,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-3">
               <label
                 htmlFor="country"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Country
               </label>
@@ -481,7 +481,7 @@ const OnBoardingForm = () => {
             <div className="col-span-3">
               <label
                 htmlFor="street-address"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 Street address
               </label>
@@ -501,7 +501,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2 sm:col-start-1">
               <label
                 htmlFor="city"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 City
               </label>
@@ -521,7 +521,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="region"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 State / Province
               </label>
@@ -541,7 +541,7 @@ const OnBoardingForm = () => {
             <div className="sm:col-span-2">
               <label
                 htmlFor="postal_code"
-                className="block text-sm font-medium leading-6 text-white"
+                className="block text-sm font-medium leading-6 "
               >
                 ZIP / Postal code
               </label>

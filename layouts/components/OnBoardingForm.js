@@ -6,6 +6,8 @@ import useSelectFile from "@hooks/useSelectFile";
 const OnBoardingForm = () => {
   const token = getCookie("authorization");
   const { selectedFiles, onSelectedFile } = useSelectFile();
+  const [formValid, setFormValid] = useState(false);
+
   const [formData, setFormData] = useState({
     username: "",
     type_service: "",
@@ -38,6 +40,10 @@ const OnBoardingForm = () => {
       ...prevFormData,
       [name]: type === "checkbox" ? checked : value,
     }));
+
+    if (name === "privacy_accepted") {
+      setFormValid(checked);
+    }
   };
 
   const handleSave = async (event) => {
@@ -82,12 +88,14 @@ const OnBoardingForm = () => {
     console.log(data);
 
     try {
-      const response = await api.put("users/profile", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response);
+      if (formData.privacy_accepted) {
+        const response = await api.put("users/profile", data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -733,7 +741,10 @@ const OnBoardingForm = () => {
         </button>
         <button
           type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:bg-indigo-500"
+          className={`rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:bg-indigo-500 ${
+            formValid ? "" : "cursor-not-allowed opacity-50"
+          }`}
+          disabled={!formValid}
         >
           Save
         </button>

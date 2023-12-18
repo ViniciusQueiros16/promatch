@@ -4,7 +4,10 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
+  distDir: 'dist',
   images: {
+    unoptimized: true,
     domains: [
       "dzzoo94ozikw5.cloudfront.net",
       "lh3.googleusercontent.com",

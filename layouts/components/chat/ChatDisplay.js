@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import Chat from "./Chat";
-import ChatHeader from "./ChatHeader";
 import { Send } from "@mui/icons-material";
+import { useEffect } from "react";
+import ChatHeader from "./ChatHeader";
 
 const ChatDisplay = ({ selectedMatch }) => {
   useEffect(() => {
